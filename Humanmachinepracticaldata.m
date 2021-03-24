@@ -118,6 +118,7 @@ mag_M_8 = groupM_data_subj8.mag_Hp ;
 mag_M = [mag_M_1; mag_M_2; mag_M_3; mag_M_4; mag_M_5; mag_M_6; mag_M_7; mag_M_8];
 omega = w ;
 
+figure(7)
 subplot(2,1,1)
 % loglog(omega, mag_M(:,1), 'o')
 
