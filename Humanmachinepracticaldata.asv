@@ -143,14 +143,16 @@ mag_mean_M_60 = mean(mag_M_run60, 2) ;
 omega = w ;
 
 
+
+
 figure(7)
 subplot(2,1,1)
-loglog(omega, mag_mean_M_1, 'o')
+loglog(omega, mag_mean_M_1, 'o', label)
 hold on
 loglog(omega, mag_mean_M_60, '*')
 hold off
 axis(10.^[-1 1.5 -1 2])
-legend('Run 1','Run 60','Location','southwest')
+legend('Signal 1','Signal 2','Location','northwest')
 
 
 
@@ -160,4 +162,3 @@ hold on
 semilogx(omega, phase_mean_M_60, '*')
 hold off
 axis([10.^-1 10.^1.5 -360 180])
-legend('Run 1','Run 60','Location','southwest')
