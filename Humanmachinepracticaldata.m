@@ -23,7 +23,7 @@ x = [1:1:60];
 RMS_M_e = [RMS_M1_e;RMS_M2_e;RMS_M3_e;RMS_M4_e;RMS_M5_e;RMS_M6_e;RMS_M7_e;RMS_M8_e];
 Med_M_e = median(RMS_M_e);
 figure(1)
-scatter(x1,Med_M_e,'*')
+scatter(x,Med_M_e,'*')
 hold on
 x1 = [1:1:60];
 y1 = Med_M_e;
