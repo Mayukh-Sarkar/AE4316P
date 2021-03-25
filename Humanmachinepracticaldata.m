@@ -6,9 +6,13 @@
 load('ae4316P_2021_data_group1.mat')
 
 %%%%%%% Plot RMS(e) %%%%%%%
+%% error
 RMS_M1_e = rms(groupM_data_subj1.e);
+
 RMS_M2_e = rms(groupM_data_subj2.e);
+
 RMS_M3_e = rms(groupM_data_subj3.e);
+
 RMS_M4_e = rms(groupM_data_subj4.e);
 RMS_M5_e = rms(groupM_data_subj5.e);
 RMS_M6_e = rms(groupM_data_subj6.e);
@@ -17,11 +21,25 @@ RMS_M8_e = rms(groupM_data_subj8.e);
 
 x = [1:1:60];
 RMS_M_e = [RMS_M1_e;RMS_M2_e;RMS_M3_e;RMS_M4_e;RMS_M5_e;RMS_M6_e;RMS_M7_e;RMS_M8_e];
-
+Med_M_e = median(RMS_M_e);
+for i = 1:length(Med_M_e)
+   
+    F(i) = [sum((Med_M_e(1)-Med_M_e(i))^2)];
+end
+for i = 1: length(F)
+    y =  Med_M_e(end)+((1-F).^x)*(Med_M_e(1)-Med_M_e(end));
+end
+D = mean(F); % struggling with the loop best fit for f = 0.0699
+y =  Med_M_e(end)+((1-D).^x)*(Med_M_e(1)-Med_M_e(end));
 figure(1);
-boxplot(RMS_M_e)
+
+plot(x,Med_M_e,'*')
+hold on
+plot(x,y)
+hold off
 
 
+%% input
 %%%%%%% Plot RMS(u) %%%%%%%
 RMS_M1_u = rms(groupM_data_subj1.u);
 RMS_M2_u = rms(groupM_data_subj2.u);

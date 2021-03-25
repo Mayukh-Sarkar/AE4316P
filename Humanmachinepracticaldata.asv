@@ -6,9 +6,13 @@
 load('ae4316P_2021_data_group1.mat')
 
 %%%%%%% Plot RMS(e) %%%%%%%
+%% error
 RMS_M1_e = rms(groupM_data_subj1.e);
+
 RMS_M2_e = rms(groupM_data_subj2.e);
+
 RMS_M3_e = rms(groupM_data_subj3.e);
+
 RMS_M4_e = rms(groupM_data_subj4.e);
 RMS_M5_e = rms(groupM_data_subj5.e);
 RMS_M6_e = rms(groupM_data_subj6.e);
@@ -17,11 +21,23 @@ RMS_M8_e = rms(groupM_data_subj8.e);
 
 x = [1:1:60];
 RMS_M_e = [RMS_M1_e;RMS_M2_e;RMS_M3_e;RMS_M4_e;RMS_M5_e;RMS_M6_e;RMS_M7_e;RMS_M8_e];
+Med_M_e = median(RMS_M_e);
+for i = 1:length(Med_M_e)
+   
+    F(i) = [sqrt(Med_M_e(1)-Med_M_e(i))/8];
+end
+C = F;
+y =  smooth(Med_M_e(end)+((1-F).^x)*(Med_M_e(1)-Med_M_e(end)));
 
-figure(1);
-boxplot(RMS_M_e)
+ figure(1);
+
+plot(x,Med_M_e,'*')
+hold on
+plot(x,y)
+hold off
 
 
+%% input
 %%%%%%% Plot RMS(u) %%%%%%%
 RMS_M1_u = rms(groupM_data_subj1.u);
 RMS_M2_u = rms(groupM_data_subj2.u);
@@ -143,16 +159,14 @@ mag_mean_M_60 = mean(mag_M_run60, 2) ;
 omega = w ;
 
 
-
-
 figure(7)
 subplot(2,1,1)
-loglog(omega, mag_mean_M_1, 'o', label)
+loglog(omega, mag_mean_M_1, 'o')
 hold on
 loglog(omega, mag_mean_M_60, '*')
 hold off
 axis(10.^[-1 1.5 -1 2])
-legend('Signal 1','Signal 2','Location','northwest')
+legend('Run 1','Run 60','Location','southwest')
 
 
 
@@ -162,3 +176,4 @@ hold on
 semilogx(omega, phase_mean_M_60, '*')
 hold off
 axis([10.^-1 10.^1.5 -360 180])
+legend('Run 1','Run 60','Location','southwest')

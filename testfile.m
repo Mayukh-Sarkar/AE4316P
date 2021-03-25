@@ -1,5 +1,7 @@
-A = [3 6 9 4 1];
-for i = 1:length(A)
-       disp(A(i))
-       disp( i )
-end
+%rng default % for reproducibility
+tdata = 0:0.1:10;
+ydata = 40*exp(-0.5*tdata) + randn(size(tdata));
+
+fun = @(x)sseval(x,tdata,ydata);
+x0 = rand(2,1);
+bestx = fminsearch(fun,x0)
