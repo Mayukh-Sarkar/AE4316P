@@ -34,7 +34,7 @@ Fe = constant(2)
 yfite =  constant(3) +(1-constant(2)).^x*(constant(1)-constant(3));
 
 hold on
-plot(x,yfit,'r');
+plot(x,yfite,'r');
 hold off
 
 
