@@ -6,7 +6,7 @@
 load('ae4316P_2021_data_group1.mat')
 
 %%%%%%% Plot RMS(e) %%%%%%%
-%% error
+%% error motion
 RMS_M1_e = rms(groupM_data_subj1.e);
 
 RMS_M2_e = rms(groupM_data_subj2.e);
@@ -22,22 +22,23 @@ RMS_M8_e = rms(groupM_data_subj8.e);
 x = [1:1:60];
 RMS_M_e = [RMS_M1_e;RMS_M2_e;RMS_M3_e;RMS_M4_e;RMS_M5_e;RMS_M6_e;RMS_M7_e;RMS_M8_e];
 Med_M_e = median(RMS_M_e);
-for i = 1:length(Med_M_e)
-   
-    F(i) = [sqrt(Med_M_e(1)-Med_M_e(i))/8];
-end
-C = F;
-y =  smooth(Med_M_e(end)+((1-F).^x)*(Med_M_e(1)-Med_M_e(end)));
-
- figure(1);
-
-plot(x,Med_M_e,'*')
+figure(1)
+boxplot(RMS_M_e)
 hold on
-plot(x,y)
+x1 = [1:1:60];
+y1 = Med_M_e;
+constant = lsqcurvefit(@f,[0;0;0],x1,y1);
+pae = constant(3)
+p0e = constant(1)
+Fe = constant(2)
+yfite =  constant(3) +(1-constant(2)).^x*(constant(1)-constant(3));
+
+hold on
+plot(x,yfit,'r');
 hold off
 
 
-%% input
+%% input motion
 %%%%%%% Plot RMS(u) %%%%%%%
 RMS_M1_u = rms(groupM_data_subj1.u);
 RMS_M2_u = rms(groupM_data_subj2.u);
@@ -48,10 +49,20 @@ RMS_M6_u = rms(groupM_data_subj6.u);
 RMS_M7_u = rms(groupM_data_subj7.u);
 RMS_M8_u = rms(groupM_data_subj8.u);
 RMS_M_u = [RMS_M1_u;RMS_M2_u;RMS_M3_u;RMS_M4_u;RMS_M5_u;RMS_M6_u;RMS_M7_u;RMS_M8_u];
+x1 = [1:1:60];
+y2 = median(RMS_M_u);
+constant = lsqcurvefit(@f,[0;0;0],x1,y2);
+pau = constant(3)
+p0u = constant(1)
+Fu = constant(2)
+yfitu =  constant(3) +(1-constant(2)).^x*(constant(1)-constant(3));
 
 figure(2);
 boxplot(RMS_M_u)
-
+hold on
+plot(x1,yfitu,'r');
+hold off
+ %% x motion
 %%%%%%% Plot RMS(x) %%%%%%%
 RMS_M1_x = rms(groupM_data_subj1.x);
 RMS_M2_x = rms(groupM_data_subj2.x);
@@ -62,11 +73,21 @@ RMS_M6_x = rms(groupM_data_subj6.x);
 RMS_M7_x = rms(groupM_data_subj7.x);
 RMS_M8_x = rms(groupM_data_subj8.x);
 RMS_M_x = [RMS_M1_x;RMS_M2_x;RMS_M3_x;RMS_M4_x;RMS_M5_x;RMS_M6_x;RMS_M7_x;RMS_M8_x];
-
+x1 = [1:1:60];
+y3 = median(RMS_M_x);
+constant = lsqcurvefit(@f,[0;0;0],x1,y3);
+pax = constant(3)
+p0x = constant(1)
+Fux = constant(2)
+yfitx =  constant(3) +(1-constant(2)).^x*(constant(1)-constant(3));
+ 
 figure(3);
 boxplot(RMS_M_x)
+hold on
+plot(x1,yfitx,'r');
+hold off
 
-
+%% nonmotion error
 %%%%%%% Plot RMS(e) %%%%%%%
 RMS_NM1_e = rms(groupNM_data_subj1.e);
 RMS_NM2_e = rms(groupNM_data_subj2.e);
@@ -79,11 +100,19 @@ RMS_NM8_e = rms(groupNM_data_subj8.e);
 
 x = [1:1:60];
 RMS_NM_e = [RMS_NM1_e;RMS_NM2_e;RMS_NM3_e;RMS_NM4_e;RMS_NM5_e;RMS_NM6_e;RMS_NM7_e;RMS_NM8_e];
-
+ynme = median(RMS_M_u);
+constant = fminsearch(@f,[0;0;0],x1,ynme);
+yfitnme =  constant(3) +(1-constant(2)).^x*(constant(1)-constant(3));
+panme = constant(3)
+p0nme = constant(1)
+Funme = constant(2)
 figure(4);
 boxplot(RMS_NM_e)
 
-
+hold on
+plot(x1,yfitnme,'r');
+hold off
+%% nm inpuut
 %%%%%%% Plot RMS(u) %%%%%%%
 RMS_NM1_u = rms(groupNM_data_subj1.u);
 RMS_NM2_u = rms(groupNM_data_subj2.u);
@@ -94,11 +123,14 @@ RMS_NM6_u = rms(groupNM_data_subj6.u);
 RMS_NM7_u = rms(groupNM_data_subj7.u);
 RMS_NM8_u = rms(groupNM_data_subj8.u);
 RMS_NM_u = [RMS_NM1_u;RMS_NM2_u;RMS_NM3_u;RMS_NM4_u;RMS_NM5_u;RMS_NM6_u;RMS_NM7_u;RMS_NM8_u];
-
+panme = constant(3)
+p0nme = constant(1)
+Funme = constant(2)
 figure(5);
 boxplot(RMS_NM_u)
 
 %%%%%%% Plot RMS(u) %%%%%%%
+%% nm x
 RMS_NM1_x = rms(groupNM_data_subj1.x);
 RMS_NM2_x = rms(groupNM_data_subj2.x);
 RMS_NM3_x = rms(groupNM_data_subj3.x);
@@ -108,9 +140,19 @@ RMS_NM6_x = rms(groupNM_data_subj6.x);
 RMS_NM7_x = rms(groupNM_data_subj7.x);
 RMS_NM8_x = rms(groupNM_data_subj8.x);
 RMS_NM_x = [RMS_NM1_x;RMS_NM2_x;RMS_NM3_x;RMS_NM4_x;RMS_NM5_x;RMS_NM6_x;RMS_NM7_x;RMS_NM8_x];
-
+y3NM = median(RMS_NM_x);
+constant = lsqcurvefit(@f,[0;0;0],x1,y3NM);
+yfitnmx =  constant(3) +(1-constant(2)).^x*(constant(1)-constant(3));
+panmx = constant(3)
+p0nmx = constant(1)
+Funmx = constant(2)
 figure(6);
 boxplot(RMS_NM_x)
+hold on
+plot(x1,yfitnmx,'r')
+hold off
+
+
 
 %% Bode Plots
 phase_M_1 = groupM_data_subj1.phase_Hp(:,1) ;
