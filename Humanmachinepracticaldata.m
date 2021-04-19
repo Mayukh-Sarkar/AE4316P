@@ -233,7 +233,6 @@ semilogx(omega, phase_mean_M_60, '*')
 hold off
 axis([10.^-1 10.^1.5 -360 180])
 legend('Run 1','Run 60','Location','southwest')
-figure(8)
-pd  =  makedist('Normal');
-p = normpdf(pd,Med_M_e);
-plot(x,p)
+
+
+val % creating the table for the  fitting values; update the parameters in val.m

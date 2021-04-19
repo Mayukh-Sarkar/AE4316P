@@ -28,8 +28,8 @@ hold on
 x = [1:1:60];
 y_e = Med_M_e;
 constant = lsqcurvefit(@f,[0;0;0],x,y_e); % curve fit for the mean error across 60 runs
-pae = constant(3); % asymptotic values
-p0e = constant(1); % initial error vaue
+pa_e = constant(3); % asymptotic values
+p0_e = constant(1); % initial error vaue
 Fe = constant(2); % learning curve slope
 
 yfit_e =  constant(3) +(1-constant(2)).^x*(constant(1)-constant(3)); % curve fitting values acrros 60 runs
@@ -77,9 +77,9 @@ RMS_M_x = [RMS_M1_x;RMS_M2_x;RMS_M3_x;RMS_M4_x;RMS_M5_x;RMS_M6_x;RMS_M7_x;RMS_M8
 x = [1:1:60];
 y_x = median(RMS_M_x);
 constant = lsqcurvefit(@f,[0;0;0],x,y_x); % leanring curve model
-pa_x = constant(3); % asymptotic value
-p0_x = constant(1); % initial value
-Fu_x = constant(2); % learning curve slope
+pa_x = constant(3); % asymptotic value for the x which I dont know what it is...Hail lucifer
+p0_x = constant(1); % initial value for the x which I dont know what it is...Hail lucifer
+Fu_x = constant(2); % learning curve slope for the x which I dont know what it is...Hail lucifer
 yfit_x =  constant(3) +(1-constant(2)).^x*(constant(1)-constant(3)); % fittig curve value for each trial
  
 figure(3);
@@ -148,9 +148,9 @@ RMS_NM_x = [RMS_NM1_x;RMS_NM2_x;RMS_NM3_x;RMS_NM4_x;RMS_NM5_x;RMS_NM6_x;RMS_NM7_
 y_NM_x = median(RMS_NM_x);
 constant = lsqcurvefit(@f,[0;0;0],x,y_NM_x);
 yfit_nm_x =  constant(3) +(1-constant(2)).^x*(constant(1)-constant(3));
-pa_nm_x = constant(3); % asymptotic value for the x which I don
-p0_nm_x = constant(1);
-F_unm_x = constant(2); % leanring rate
+pa_nm_x = constant(3); % asymptotic value for the x which I dont know what it is...Hail lucifer
+p0_nm_x = constant(1); % inital value for the x which I dont know what it is...Hail lucifer
+Fu_nm_x = constant(2); % leanring rate  for the x which I dont know what it is...Hail lucifer
 % figure(6);
 % boxplot(RMS_NM_x)
 % hold on
@@ -215,6 +215,7 @@ hold on
 axis(10.^[-1 1.5 -1 2])
 legend('Run 1','Run 60','Location','southwest')
 constant = lsqcurvefit(@f,[0;0;0],omega,mag_mean_M_60);
+%test fit
 yfitM =  constant(3) +(1-constant(2)).^omega*(constant(1)-constant(3));
 paM = constant(3)
 p0M = constant(1)
@@ -233,6 +234,6 @@ hold off
 axis([10.^-1 10.^1.5 -360 180])
 legend('Run 1','Run 60','Location','southwest')
 figure(8)
-pd  =  makedist('Normal');
-p = normpdf(pd,Med_M_e);
+
+p = normpdf(R);
 plot(x,p)
