@@ -28,8 +28,8 @@ hold on
 x = [1:1:60];
 y_e = Med_M_e;
 constant = lsqcurvefit(@f,[0;0;0],x,y_e); % curve fit for the mean error across 60 runs
-pae = constant(3); % asymptotic values
-p0e = constant(1); % initial error vaue
+pa_e = constant(3); % asymptotic values
+p0_e = constant(1); % initial error vaue
 Fe = constant(2); % learning curve slope
 
 yfit_e =  constant(3) +(1-constant(2)).^x*(constant(1)-constant(3)); % curve fitting values acrros 60 runs
@@ -150,7 +150,7 @@ constant = lsqcurvefit(@f,[0;0;0],x,y_NM_x);
 yfit_nm_x =  constant(3) +(1-constant(2)).^x*(constant(1)-constant(3));
 pa_nm_x = constant(3); % asymptotic value for the x which I dont know what it is...Hail lucifer
 p0_nm_x = constant(1); % inital value for the x which I dont know what it is...Hail lucifer
-F_unm_x = constant(2); % leanring rate  for the x which I dont know what it is...Hail lucifer
+Fu_nm_x = constant(2); % leanring rate  for the x which I dont know what it is...Hail lucifer
 % figure(6);
 % boxplot(RMS_NM_x)
 % hold on

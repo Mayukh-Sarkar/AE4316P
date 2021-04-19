@@ -1,0 +1,6 @@
+parameters = {'error' ; 'input' ; 'x'};
+p0 = [p0_e;p0_u;p0_x];
+pa = [pa_e;pa_u;pa_x];
+F = [Fe;F_u;Fu_x];
+T = table(p0,pa,F,'RowNames',parameters);
+disp(T)
