@@ -230,9 +230,17 @@ subplot(2,1,2)
 semilogx(omega, phase_mean_M_1, 'o')
 hold on
 semilogx(omega, phase_mean_M_60, '*')
-hold off
+hold on
 axis([10.^-1 10.^1.5 -360 180])
 legend('Run 1','Run 60','Location','southwest')
+%test fit
+yfitM =  constant(3) +(1-constant(2)).^omega*(constant(1)-constant(3));
+paM = constant(3);
+p0M = constant(1);
+FuM = constant(2);
+
+loglog(omega,yfitM,'r')
+hold off
 
 
 val % creating the table for the  fitting values; update the parameters in val.m
