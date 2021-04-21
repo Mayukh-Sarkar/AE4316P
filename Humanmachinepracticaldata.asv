@@ -25,17 +25,16 @@ Med_M_e = median(RMS_M_e);
 figure(1)
 scatter(x,Med_M_e,'*')
 hold on
-x = [1:1:60];
-y_e = Med_M_e;
-constant = lsqcurvefit(@f,[0;0;0],x,y_e); % curve fit for the mean error across 60 runs
-pa_e = constant(3); % asymptotic values
-p0_e = constant(1); % initial error vaue
-Fe = constant(2); % learning curve slope
-
-yfit_e =  constant(3) +(1-constant(2)).^x*(constant(1)-constant(3)); % curve fitting values acrros 60 runs
+x1 = [1:1:60];
+y1 = Med_M_e;
+constant = lsqcurvefit(@f,[0;0;0],x1,y1);
+pae = constant(3)
+p0e = constant(1)
+Fe = constant(2)
+yfite =  constant(3) +(1-constant(2)).^x*(constant(1)-constant(3));
 
 hold on
-plot(x,yfit_e,'r');
+plot(x,yfite,'r');
 hold off
 
 
@@ -50,18 +49,18 @@ RMS_M6_u = rms(groupM_data_subj6.u);
 RMS_M7_u = rms(groupM_data_subj7.u);
 RMS_M8_u = rms(groupM_data_subj8.u);
 RMS_M_u = [RMS_M1_u;RMS_M2_u;RMS_M3_u;RMS_M4_u;RMS_M5_u;RMS_M6_u;RMS_M7_u;RMS_M8_u];
-x = [1:1:60];
-y_u = median(RMS_M_u);
-constant = lsqcurvefit(@f,[0;0;0],x,y_u); % curve fitting function for input u
-pa_u = constant(3); % asymptotic value of the input curve
-p0_u = constant(1); % initial error value for the input
-F_u = constant(2);% learning slope 
-yfit_u =  constant(3) +(1-constant(2)).^x*(constant(1)-constant(3)); % value for the fit
+x1 = [1:1:60];
+y2 = median(RMS_M_u);
+constant = lsqcurvefit(@f,[0;0;0],x1,y2);
+pau = constant(3)
+p0u = constant(1)
+Fu = constant(2)
+yfitu =  constant(3) +(1-constant(2)).^x*(constant(1)-constant(3));
 
 figure(2);
 boxplot(RMS_M_u)
 hold on
-plot(x,yfit_u,'r');
+plot(x1,yfitu,'r');
 hold off
  %% x motion
 %%%%%%% Plot RMS(x) %%%%%%%
@@ -74,18 +73,18 @@ RMS_M6_x = rms(groupM_data_subj6.x);
 RMS_M7_x = rms(groupM_data_subj7.x);
 RMS_M8_x = rms(groupM_data_subj8.x);
 RMS_M_x = [RMS_M1_x;RMS_M2_x;RMS_M3_x;RMS_M4_x;RMS_M5_x;RMS_M6_x;RMS_M7_x;RMS_M8_x];
-x = [1:1:60];
-y_x = median(RMS_M_x);
-constant = lsqcurvefit(@f,[0;0;0],x,y_x); % leanring curve model
-pa_x = constant(3); % asymptotic value for the x which I dont know what it is...Hail lucifer
-p0_x = constant(1); % initial value for the x which I dont know what it is...Hail lucifer
-Fu_x = constant(2); % learning curve slope for the x which I dont know what it is...Hail lucifer
-yfit_x =  constant(3) +(1-constant(2)).^x*(constant(1)-constant(3)); % fittig curve value for each trial
+x1 = [1:1:60];
+y3 = median(RMS_M_x);
+constant = lsqcurvefit(@f,[0;0;0],x1,y3);
+pax = constant(3)
+p0x = constant(1)
+Fux = constant(2)
+yfitx =  constant(3) +(1-constant(2)).^x*(constant(1)-constant(3));
  
 figure(3);
 boxplot(RMS_M_x)
 hold on
-plot(x,yfit_x,'r');
+plot(x1,yfitx,'r');
 hold off
 
 %% nonmotion error
@@ -101,16 +100,16 @@ RMS_NM8_e = rms(groupNM_data_subj8.e);
 
 x = [1:1:60];
 RMS_NM_e = [RMS_NM1_e;RMS_NM2_e;RMS_NM3_e;RMS_NM4_e;RMS_NM5_e;RMS_NM6_e;RMS_NM7_e;RMS_NM8_e];
-y_nm_e = median(RMS_NM_e);
-constant = lsqcurvefit(@f,[0;0;0],x,y_nm_e); % fitting curve
-yfit_nm_e =  constant(3) +(1-constant(2)).^x*(constant(1)-constant(3)); % valyes of the fitting curve
-pa_nm_e = constant(3); % asymptotic values for non motion error
-p0_nm_e = constant(1); % initial value for non motion error
-Fu_nm_e = constant(2); % learning curve rate
+ynme = median(RMS_NM_e);
+constant = lsqcurvefit(@f,[0;0;0],x1,ynme);
+yfitnme =  constant(3) +(1-constant(2)).^x*(constant(1)-constant(3));
+panme = constant(3)
+p0nme = constant(1)
+Funme = constant(2)
 figure(4);
 boxplot(RMS_NM_e)
 hold on
-plot(x,yfit_nm_e,'r');
+plot(x1,yfitnme,'r');
 hold off
 %% nm inpuut
 %%%%%%% Plot RMS(u) %%%%%%%
@@ -123,16 +122,16 @@ RMS_NM6_u = rms(groupNM_data_subj6.u);
 RMS_NM7_u = rms(groupNM_data_subj7.u);
 RMS_NM8_u = rms(groupNM_data_subj8.u);
 RMS_NM_u = [RMS_NM1_u;RMS_NM2_u;RMS_NM3_u;RMS_NM4_u;RMS_NM5_u;RMS_NM6_u;RMS_NM7_u;RMS_NM8_u];
-y_nm_u = median(RMS_NM_u);
-constant = lsqcurvefit(@f,[0;0;0],x,y_nm_u); % learning curve
-yfit_nm_u =  constant(3) +(1-constant(2)).^x*(constant(1)-constant(3)); % learning curve values for the pilot input
-pa_nm_u = constant(3); % asymptotic valuue for thge input curve
-p0_nm_u = constant(1); % inital value of the input curve
-Fu_nm_u = constant(2);% learning rate
+y2NM = median(RMS_NM_u);
+constant = lsqcurvefit(@f,[0;0;0],x1,y2NM);
+yfitnmu =  constant(3) +(1-constant(2)).^x*(constant(1)-constant(3));
+panmu = constant(3)
+p0nmu = constant(1)
+Funmu = constant(2)
 figure(5);
 boxplot(RMS_NM_u)
 hold on
-plot(x,yfit_nm_u,'r')
+plot(x1,yfitnmu,'r')
 hold off
 %%%%%%% Plot RMS(u) %%%%%%%
 %% nm x
@@ -145,17 +144,17 @@ RMS_NM6_x = rms(groupNM_data_subj6.x);
 RMS_NM7_x = rms(groupNM_data_subj7.x);
 RMS_NM8_x = rms(groupNM_data_subj8.x);
 RMS_NM_x = [RMS_NM1_x;RMS_NM2_x;RMS_NM3_x;RMS_NM4_x;RMS_NM5_x;RMS_NM6_x;RMS_NM7_x;RMS_NM8_x];
-y_NM_x = median(RMS_NM_x);
-constant = lsqcurvefit(@f,[0;0;0],x,y_NM_x);
-yfit_nm_x =  constant(3) +(1-constant(2)).^x*(constant(1)-constant(3));
-pa_nm_x = constant(3); % asymptotic value for the x which I dont know what it is...Hail lucifer
-p0_nm_x = constant(1); % inital value for the x which I dont know what it is...Hail lucifer
-Fu_nm_x = constant(2); % leanring rate  for the x which I dont know what it is...Hail lucifer
-% figure(6);
-% boxplot(RMS_NM_x)
-% hold on
-% plot(x,yfit_nm_x,'r')
-% hold off
+y3NM = median(RMS_NM_x);
+constant = lsqcurvefit(@f,[0;0;0],x1,y3NM);
+yfitnmx =  constant(3) +(1-constant(2)).^x*(constant(1)-constant(3));
+panmx = constant(3)
+p0nmx = constant(1)
+Funmx = constant(2)
+figure(6);
+boxplot(RMS_NM_x)
+hold on
+plot(x1,yfitnmx,'r')
+hold off
 
 
 
@@ -211,46 +210,24 @@ subplot(2,1,1)
 loglog(omega, mag_mean_M_1, 'o')
 hold on
 loglog(omega, mag_mean_M_60, '*')
-hold on
+hold off
 axis(10.^[-1 1.5 -1 2])
 legend('Run 1','Run 60','Location','southwest')
-constant = lsqcurvefit(@f,[0;0;0],omega,mag_mean_M_60);
-%test fit
-yfitM =  constant(3) +(1-constant(2)).^omega*(constant(1)-constant(3));
-paM = constant(3)
-p0M = constant(1)
-FuM = constant(2)
-
-loglog(omega,yfitM,'r')
-hold off
 
 subplot(2,1,2)
 semilogx(omega, phase_mean_M_1, 'o')
 hold on
 semilogx(omega, phase_mean_M_60, '*')
-hold on
+hold off
 axis([10.^-1 10.^1.5 -360 180])
 legend('Run 1','Run 60','Location','southwest')
-<<<<<<< Updated upstream
-%test fit
-yfitM =  constant(3) +(1-constant(2)).^omega*(constant(1)-constant(3));
-paM = constant(3);
-p0M = constant(1);
-FuM = constant(2);
-
-loglog(omega,yfitM,'r')
-hold off
-
-
-val % creating the table for the  fitting values; update the parameters in val.m
-=======
 
 %% Human Pilot NM model parameters
 
 % options = optimset('Display','iter','PlotFcns',@optimplotfval);
 
-% N_participants = 5 ;
-N_participants = 60 ;
+N_participants = 5 ;
+% N_participants = 60 ;
 N_par = 5 ;
 human_par = zeros(N_participants, N_par) ;
 
@@ -309,25 +286,24 @@ for i = 1 : N_participants
         phase_out(l) = angle(Hpe_model)*180/pi ;
     end
 
-%     title = "Bode plot for run #" + num2str(i) ;
-%     figure(7+i)
-%     subplot(2,1,1)
-%     loglog(omega, mag_mean_M, 'o')
-%     hold on
-%     loglog(omega_test, mag_out)
-%     hold off
-%     axis(10.^[-1 1.5 -1 2])
-%     legend('Experiment','Parameter estimation','Location','southwest')
-%     
-%     subplot(2,1,2)
-%     semilogx(omega, phase_mean_M, 'o')
-%     hold on
-%     semilogx(omega_test, phase_out)
-%     hold off
-%     axis([10.^-1 10.^1.5 -360 180])
-%     legend('Experiment','Parameter estimation','Location','southwest')
-%     sgtitle(title)
+    title = "
+    figure(7+i)
+    subplot(2,1,1)
+    loglog(omega, mag_mean_M, 'o')
+    hold on
+    loglog(omega_test, mag_out)
+    hold off
+    axis(10.^[-1 1.5 -1 2])
+    legend('Experiment','Parameter estimation','Location','southwest')
+    
+    subplot(2,1,2)
+    semilogx(omega, phase_mean_M, 'o')
+    hold on
+    semilogx(omega_test, phase_out)
+    hold off
+    axis([10.^-1 10.^1.5 -360 180])
+    legend('Experiment','Parameter estimation','Location','southwest')
+    sgtitle(
 
 end
 
->>>>>>> Stashed changes
