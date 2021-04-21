@@ -231,7 +231,7 @@ semilogx(omega, phase_mean_M_60, '*')
 hold on
 axis([10.^-1 10.^1.5 -360 180])
 legend('Run 1','Run 60','Location','southwest')
-<<<<<<< Updated upstream
+
 %test fit
 yfitM =  constant(3) +(1-constant(2)).^omega*(constant(1)-constant(3));
 paM = constant(3);
@@ -243,16 +243,16 @@ hold off
 
 
 val % creating the table for the  fitting values; update the parameters in val.m
-=======
 
-%% Human Pilot NM model parameters
+
+%% Human Pilot M model parameters
 
 % options = optimset('Display','iter','PlotFcns',@optimplotfval);
 
 % N_participants = 5 ;
 N_participants = 60 ;
 N_par = 5 ;
-human_par = zeros(N_participants, N_par) ;
+human_par_M = zeros(N_participants, N_par) ;
 
 for i = 1 : N_participants
     phase_M_1 = groupM_data_subj1.phase_Hp(:,i) ;
@@ -292,11 +292,11 @@ for i = 1 : N_participants
     % [x,fval,exitflag,output] = fminsearch(f, x0, options);
     x = fminsearch(f,x0);
     
-    human_par(i,1) = x(1) ;
-    human_par(i,2) = x(2) ;
-    human_par(i,3) = x(3) ;
-    human_par(i,4) = x(4) ;
-    human_par(i,5) = x(5) ;
+    human_par_M(i,1) = x(1) ;
+    human_par_M(i,2) = x(2) ;
+    human_par_M(i,3) = x(3) ;
+    human_par_M(i,4) = x(4) ;
+    human_par_M(i,5) = x(5) ;
     
     
     omega_test = logspace(-1, 1.5, 200) ;
@@ -330,4 +330,88 @@ for i = 1 : N_participants
 
 end
 
->>>>>>> Stashed changes
+
+%% Human Pilot NM model parameters
+
+% options = optimset('Display','iter','PlotFcns',@optimplotfval);
+
+% N_participants = 5 ;
+N_participants = 60 ;
+N_par = 5 ;
+human_par_NM = zeros(N_participants, N_par) ;
+
+for i = 1 : N_participants
+    phase_NM_1 = groupNM_data_subj1.phase_Hp(:,i) ;
+    phase_NM_2 = groupNM_data_subj2.phase_Hp(:,i) ;
+    phase_NM_3 = groupNM_data_subj3.phase_Hp(:,i) ;
+    phase_NM_4 = groupNM_data_subj4.phase_Hp(:,i) ;
+    phase_NM_5 = groupNM_data_subj5.phase_Hp(:,i) ;
+    phase_NM_6 = groupNM_data_subj6.phase_Hp(:,i) ;
+    phase_NM_7 = groupNM_data_subj7.phase_Hp(:,i) ;
+    phase_NM_8 = groupNM_data_subj8.phase_Hp(:,i) ;
+    phase_NM = [phase_NM_1 phase_NM_2 phase_NM_3 phase_NM_4 phase_NM_5 phase_NM_6 phase_NM_7 phase_NM_8];
+    phase_mean_NM = mean(phase_NM, 2) ;
+
+    mag_NM_1 = groupNM_data_subj1.mag_Hp(:,i) ;
+    mag_NM_2 = groupNM_data_subj2.mag_Hp(:,i) ;
+    mag_NM_3 = groupNM_data_subj3.mag_Hp(:,i) ;
+    mag_NM_4 = groupNM_data_subj4.mag_Hp(:,i) ;
+    mag_NM_5 = groupNM_data_subj5.mag_Hp(:,i) ;
+    mag_NM_6 = groupNM_data_subj6.mag_Hp(:,i) ;
+    mag_NM_7 = groupNM_data_subj7.mag_Hp(:,i) ;
+    mag_NM_8 = groupNM_data_subj8.mag_Hp(:,i) ;
+    mag_NM = [mag_NM_1 mag_NM_2 mag_NM_3 mag_NM_4 mag_NM_5 mag_NM_6 mag_NM_7 mag_NM_8];
+    mag_mean_NM = mean(mag_NM, 2) ;
+
+    H_pe = zeros(length(w),1) ; 
+    f = @(x) 0 ;
+
+    Phase = phase_mean_NM;
+    Mag = mag_mean_NM;
+    for k = 1 : length(w)
+        H_pe(k) = Mag(k) * (cos(Phase(k)*pi/180) + 1j * sin(Phase(k)*pi/180)) ;
+        g = @(x) (abs(H_pe(k) - x(1)*(1 + x(2)*(1j*w(k))) * exp(-1j*w(k)*x(3)) * (x(5)^2/(x(5)^2 + 2*x(4)*x(5)*1j*w(k) + (1j*w(k))^2))))^2;
+        f = @(x) f(x) + g(x) ;
+    end
+
+    x0 = [3, 1, 0.35, 0.5, 15] ;
+    % [x,fval,exitflag,output] = fminsearch(f, x0, options);
+    x = fminsearch(f,x0);
+    
+    human_par_NM(i,1) = x(1) ;
+    human_par_NM(i,2) = x(2) ;
+    human_par_NM(i,3) = x(3) ;
+    human_par_NM(i,4) = x(4) ;
+    human_par_NM(i,5) = x(5) ;
+    
+    
+    omega_test = logspace(-1, 1.5, 200) ;
+    phase_out = zeros(length(omega_test),1) ;
+    mag_out = zeros(length(omega_test),1) ;
+
+    for l = 1:length(omega_test)
+        Hpe_model = x(1)*(1 + x(2)*(1j*omega_test(l))) * exp(-1j*omega_test(l)*x(3)) * (x(5)^2/(x(5)^2 + 2*x(4)*x(5)*1j*omega_test(l) + (1j*omega_test(l))^2));
+        mag_out(l) = abs(Hpe_model) ;
+        phase_out(l) = angle(Hpe_model)*180/pi ;
+    end
+
+%     title = "Bode plot for run #" + num2str(i) ;
+%     figure(7+i)
+%     subplot(2,1,1)
+%     loglog(omega, mag_mean_M, 'o')
+%     hold on
+%     loglog(omega_test, mag_out)
+%     hold off
+%     axis(10.^[-1 1.5 -1 2])
+%     legend('Experiment','Parameter estimation','Location','southwest')
+%     
+%     subplot(2,1,2)
+%     semilogx(omega, phase_mean_M, 'o')
+%     hold on
+%     semilogx(omega_test, phase_out)
+%     hold off
+%     axis([10.^-1 10.^1.5 -360 180])
+%     legend('Experiment','Parameter estimation','Location','southwest')
+%     sgtitle(title)
+
+end
