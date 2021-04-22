@@ -335,8 +335,8 @@ end
 
 % options = optimset('Display','iter','PlotFcns',@optimplotfval);
 
-% N_participants = 5 ;
-N_participants = 60 ;
+N_participants = 5 ;
+% N_participants = 60 ;
 N_par = 5 ;
 human_par_NM = zeros(N_participants, N_par) ;
 
@@ -395,23 +395,23 @@ for i = 1 : N_participants
         phase_out(l) = angle(Hpe_model)*180/pi ;
     end
 
-%     title = "Bode plot for run #" + num2str(i) ;
-%     figure(7+i)
-%     subplot(2,1,1)
-%     loglog(omega, mag_mean_M, 'o')
-%     hold on
-%     loglog(omega_test, mag_out)
-%     hold off
-%     axis(10.^[-1 1.5 -1 2])
-%     legend('Experiment','Parameter estimation','Location','southwest')
-%     
-%     subplot(2,1,2)
-%     semilogx(omega, phase_mean_M, 'o')
-%     hold on
-%     semilogx(omega_test, phase_out)
-%     hold off
-%     axis([10.^-1 10.^1.5 -360 180])
-%     legend('Experiment','Parameter estimation','Location','southwest')
-%     sgtitle(title)
+    title = "Bode plot for run #" + num2str(i) ;
+    figure(7+i)
+    subplot(2,1,1)
+    loglog(omega, mag_mean_M, 'o')
+    hold on
+    loglog(omega_test, mag_out)
+    hold off
+    axis(10.^[-1 1.5 -1 2])
+    legend('Experiment','Parameter estimation','Location','southwest')
+    
+    subplot(2,1,2)
+    semilogx(omega, phase_mean_M, 'o')
+    hold on
+    semilogx(omega_test, phase_out)
+    hold off
+    axis([10.^-1 10.^1.5 -360 180])
+    legend('Experiment','Parameter estimation','Location','southwest')
+    sgtitle(title)
 
 end
