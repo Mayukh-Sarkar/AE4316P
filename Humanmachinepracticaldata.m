@@ -26,8 +26,8 @@ figure(1)
 scatter(x,Med_M_e,'*')
 hold on
 x = [1:1:60];
-y_e = Med_M_e;
-constant = lsqcurvefit(@f,[0;0;0],x,y_e); % curve fit for the mean error across 60 runs
+y_m_e = Med_M_e;
+constant = lsqcurvefit(@f,[0;0;0],x,y_m_e); % curve fit for the mean error across 60 runs
 pa_e = constant(3); % asymptotic values
 p0_e = constant(1); % initial error vaue
 Fe = constant(2); % learning curve slope
@@ -151,98 +151,98 @@ yfit_nm_x =  constant(3) +(1-constant(2)).^x*(constant(1)-constant(3));
 pa_nm_x = constant(3); % asymptotic value for the x which I dont know what it is...Hail lucifer
 p0_nm_x = constant(1); % inital value for the x which I dont know what it is...Hail lucifer
 Fu_nm_x = constant(2); % leanring rate  for the x which I dont know what it is...Hail lucifer
-% figure(6);
-% boxplot(RMS_NM_x)
-% hold on
-% plot(x,yfit_nm_x,'r')
-% hold off
+figure(6);
+boxplot(RMS_NM_x)
+hold on
+plot(x,yfit_nm_x,'r')
+hold off
 
 
 
 %% Bode Plots
-phase_M_1 = groupM_data_subj1.phase_Hp(:,1) ;
-phase_M_2 = groupM_data_subj2.phase_Hp(:,1) ;
-phase_M_3 = groupM_data_subj3.phase_Hp(:,1) ;
-phase_M_4 = groupM_data_subj4.phase_Hp(:,1) ;
-phase_M_5 = groupM_data_subj5.phase_Hp(:,1) ;
-phase_M_6 = groupM_data_subj6.phase_Hp(:,1) ;
-phase_M_7 = groupM_data_subj7.phase_Hp(:,1) ;
-phase_M_8 = groupM_data_subj8.phase_Hp(:,1) ;
-phase_M_run1 = [phase_M_1 phase_M_2 phase_M_3 phase_M_4 phase_M_5 phase_M_6 phase_M_7 phase_M_8];
-phase_mean_M_1 = mean(phase_M_run1, 2) ;
+% phase_M_1 = groupM_data_subj1.phase_Hp(:,1) ;
+% phase_M_2 = groupM_data_subj2.phase_Hp(:,1) ;
+% phase_M_3 = groupM_data_subj3.phase_Hp(:,1) ;
+% phase_M_4 = groupM_data_subj4.phase_Hp(:,1) ;
+% phase_M_5 = groupM_data_subj5.phase_Hp(:,1) ;
+% phase_M_6 = groupM_data_subj6.phase_Hp(:,1) ;
+% phase_M_7 = groupM_data_subj7.phase_Hp(:,1) ;
+% phase_M_8 = groupM_data_subj8.phase_Hp(:,1) ;
+% phase_M_run1 = [phase_M_1 phase_M_2 phase_M_3 phase_M_4 phase_M_5 phase_M_6 phase_M_7 phase_M_8];
+% phase_mean_M_1 = mean(phase_M_run1, 2) ;
+% 
+% mag_M_1 = groupM_data_subj1.mag_Hp(:,1) ;
+% mag_M_2 = groupM_data_subj2.mag_Hp(:,1) ;
+% mag_M_3 = groupM_data_subj3.mag_Hp(:,1) ;
+% mag_M_4 = groupM_data_subj4.mag_Hp(:,1) ;
+% mag_M_5 = groupM_data_subj5.mag_Hp(:,1) ;
+% mag_M_6 = groupM_data_subj6.mag_Hp(:,1) ;
+% mag_M_7 = groupM_data_subj7.mag_Hp(:,1) ;
+% mag_M_8 = groupM_data_subj8.mag_Hp(:,1) ;
+% mag_M_run1 = [mag_M_1 mag_M_2 mag_M_3 mag_M_4 mag_M_5 mag_M_6 mag_M_7 mag_M_8];
+% mag_mean_M_1 = mean(mag_M_run1, 2) ;
+% 
+% phase_M_1 = groupM_data_subj1.phase_Hp(:,60) ;
+% phase_M_2 = groupM_data_subj2.phase_Hp(:,60) ;
+% phase_M_3 = groupM_data_subj3.phase_Hp(:,60) ;
+% phase_M_4 = groupM_data_subj4.phase_Hp(:,60) ;
+% phase_M_5 = groupM_data_subj5.phase_Hp(:,60) ;
+% phase_M_6 = groupM_data_subj6.phase_Hp(:,60) ;
+% phase_M_7 = groupM_data_subj7.phase_Hp(:,60) ;
+% phase_M_8 = groupM_data_subj8.phase_Hp(:,60) ;
+% phase_M_60 = [phase_M_1 phase_M_2 phase_M_3 phase_M_4 phase_M_5 phase_M_6 phase_M_7 phase_M_8];
+% phase_mean_M_60 = mean(phase_M_60, 2) ;
+% 
+% mag_M_1 = groupM_data_subj1.mag_Hp(:,60) ;
+% mag_M_2 = groupM_data_subj2.mag_Hp(:,60) ;
+% mag_M_3 = groupM_data_subj3.mag_Hp(:,60) ;
+% mag_M_4 = groupM_data_subj4.mag_Hp(:,60) ;
+% mag_M_5 = groupM_data_subj5.mag_Hp(:,60) ;
+% mag_M_6 = groupM_data_subj6.mag_Hp(:,60) ;
+% mag_M_7 = groupM_data_subj7.mag_Hp(:,60) ;
+% mag_M_8 = groupM_data_subj8.mag_Hp(:,60) ;
+% mag_M_run60 = [mag_M_1 mag_M_2 mag_M_3 mag_M_4 mag_M_5 mag_M_6 mag_M_7 mag_M_8];
+% mag_mean_M_60 = mean(mag_M_run60, 2) ;
+% omega = w ;
+% 
+% 
+% figure(7)
+% subplot(2,1,1)
+% loglog(omega, mag_mean_M_1, 'o')
+% hold on
+% loglog(omega, mag_mean_M_60, '*')
+% hold on
+% axis(10.^[-1 1.5 -1 2])
+% legend('Run 1','Run 60','Location','southwest')
+% constant = lsqcurvefit(@f,[0;0;0],omega,mag_mean_M_60);
+% %test fit
+% yfitM =  constant(3) +(1-constant(2)).^omega*(constant(1)-constant(3));
+% paM = constant(3)
+% p0M = constant(1)
+% FuM = constant(2)
+% 
+% loglog(omega,yfitM,'r')
+% hold off
+% 
+% subplot(2,1,2)
+% semilogx(omega, phase_mean_M_1, 'o')
+% hold on
+% semilogx(omega, phase_mean_M_60, '*')
+% hold on
+% axis([10.^-1 10.^1.5 -360 180])
+% legend('Run 1','Run 60','Location','southwest')
+% 
+% %test fit
+% yfitM =  constant(3) +(1-constant(2)).^omega*(constant(1)-constant(3));
+% paM = constant(3);
+% p0M = constant(1);
+% FuM = constant(2);
+% 
+% loglog(omega,yfitM,'r')
+% hold off
 
-mag_M_1 = groupM_data_subj1.mag_Hp(:,1) ;
-mag_M_2 = groupM_data_subj2.mag_Hp(:,1) ;
-mag_M_3 = groupM_data_subj3.mag_Hp(:,1) ;
-mag_M_4 = groupM_data_subj4.mag_Hp(:,1) ;
-mag_M_5 = groupM_data_subj5.mag_Hp(:,1) ;
-mag_M_6 = groupM_data_subj6.mag_Hp(:,1) ;
-mag_M_7 = groupM_data_subj7.mag_Hp(:,1) ;
-mag_M_8 = groupM_data_subj8.mag_Hp(:,1) ;
-mag_M_run1 = [mag_M_1 mag_M_2 mag_M_3 mag_M_4 mag_M_5 mag_M_6 mag_M_7 mag_M_8];
-mag_mean_M_1 = mean(mag_M_run1, 2) ;
 
-phase_M_1 = groupM_data_subj1.phase_Hp(:,60) ;
-phase_M_2 = groupM_data_subj2.phase_Hp(:,60) ;
-phase_M_3 = groupM_data_subj3.phase_Hp(:,60) ;
-phase_M_4 = groupM_data_subj4.phase_Hp(:,60) ;
-phase_M_5 = groupM_data_subj5.phase_Hp(:,60) ;
-phase_M_6 = groupM_data_subj6.phase_Hp(:,60) ;
-phase_M_7 = groupM_data_subj7.phase_Hp(:,60) ;
-phase_M_8 = groupM_data_subj8.phase_Hp(:,60) ;
-phase_M_60 = [phase_M_1 phase_M_2 phase_M_3 phase_M_4 phase_M_5 phase_M_6 phase_M_7 phase_M_8];
-phase_mean_M_60 = mean(phase_M_60, 2) ;
-
-mag_M_1 = groupM_data_subj1.mag_Hp(:,60) ;
-mag_M_2 = groupM_data_subj2.mag_Hp(:,60) ;
-mag_M_3 = groupM_data_subj3.mag_Hp(:,60) ;
-mag_M_4 = groupM_data_subj4.mag_Hp(:,60) ;
-mag_M_5 = groupM_data_subj5.mag_Hp(:,60) ;
-mag_M_6 = groupM_data_subj6.mag_Hp(:,60) ;
-mag_M_7 = groupM_data_subj7.mag_Hp(:,60) ;
-mag_M_8 = groupM_data_subj8.mag_Hp(:,60) ;
-mag_M_run60 = [mag_M_1 mag_M_2 mag_M_3 mag_M_4 mag_M_5 mag_M_6 mag_M_7 mag_M_8];
-mag_mean_M_60 = mean(mag_M_run60, 2) ;
-omega = w ;
-
-
-figure(7)
-subplot(2,1,1)
-loglog(omega, mag_mean_M_1, 'o')
-hold on
-loglog(omega, mag_mean_M_60, '*')
-hold on
-axis(10.^[-1 1.5 -1 2])
-legend('Run 1','Run 60','Location','southwest')
-constant = lsqcurvefit(@f,[0;0;0],omega,mag_mean_M_60);
-%test fit
-yfitM =  constant(3) +(1-constant(2)).^omega*(constant(1)-constant(3));
-paM = constant(3)
-p0M = constant(1)
-FuM = constant(2)
-
-loglog(omega,yfitM,'r')
-hold off
-
-subplot(2,1,2)
-semilogx(omega, phase_mean_M_1, 'o')
-hold on
-semilogx(omega, phase_mean_M_60, '*')
-hold on
-axis([10.^-1 10.^1.5 -360 180])
-legend('Run 1','Run 60','Location','southwest')
-
-%test fit
-yfitM =  constant(3) +(1-constant(2)).^omega*(constant(1)-constant(3));
-paM = constant(3);
-p0M = constant(1);
-FuM = constant(2);
-
-loglog(omega,yfitM,'r')
-hold off
-
-
-val % creating the table for the  fitting values; update the parameters in val.m
+%val % creating the table for the  fitting values; update the parameters in val.m
 
 
 %% Human Pilot M model parameters
@@ -415,3 +415,133 @@ for i = 1 : N_participants
 %     sgtitle(title)
 
 end
+
+%% nomotion group
+x1 = [1:1:60]';
+kp_nm = human_par_NM(:,1);
+Tl_nm = human_par_NM(:,2);
+Tp_nm  = human_par_NM(:,3);
+zeta_nm = human_par_NM(:,4);
+omega_nm = human_par_NM(:,5);
+
+constant = lsqcurvefit(@f,[0;0;0],x1,kp_nm);
+yfit_nm_kp =  constant(3) +(1-constant(2)).^x1*(constant(1)-constant(3));
+pa_nm_kp = constant(3); % asymptotic value for the x which I dont know what it is...Hail lucifer
+p0_nm_kp = constant(1); % inital value for the x which I dont know what it is...Hail lucifer
+Fu_nm_kp = constant(2);
+
+figure(7);
+plot(x1,kp_nm,'*')
+hold on
+plot(x1,yfit_nm_kp,'r')
+hold off
+
+constant = lsqcurvefit(@f,[0;0;0],x1,Tl_nm);
+yfit_nm_Tl =  constant(3) +(1-constant(2)).^x1*(constant(1)-constant(3));
+pa_nm_Tl = constant(3); % asymptotic value for the x which I dont know what it is...Hail lucifer
+p0_nm_Tl = constant(1); % inital value for the x which I dont know what it is...Hail lucifer
+Fu_nm_Tl = constant(2);
+
+figure(8);
+plot(x1,Tl_nm,'*')
+hold on
+plot(x1,yfit_nm_Tl,'r')
+hold off
+
+figure(9);
+constant = lsqcurvefit(@f,[0;0;0],x1,Tp_nm);
+yfit_nm_Tp =  constant(3) +(1-constant(2)).^x1*(constant(1)-constant(3));
+pa_nm_Tp = constant(3); % asymptotic value for the x which I dont know what it is...Hail lucifer
+p0_nm_Tp = constant(1); % inital value for the x which I dont know what it is...Hail lucifer
+Fu_nm_Tp = constant(2);
+plot(x1,Tp_nm,'*')
+hold on
+plot(x1,yfit_nm_Tp,'r')
+hold off
+
+figure(10);
+constant = lsqcurvefit(@f,[0;0;0],x1,zeta_nm);
+yfit_nm_zeta =  constant(3) +(1-constant(2)).^x1*(constant(1)-constant(3));
+pa_nm_zeta = constant(3); % asymptotic value for the x which I dont know what it is...Hail lucifer
+p0_nm_zeta = constant(1); % inital value for the x which I dont know what it is...Hail lucifer
+Fu_nm_zeta = constant(2);
+plot(x1,zeta_nm,'*')
+hold on
+plot(x1,yfit_nm_zeta,'r')
+hold off
+
+figure(11);
+constant = lsqcurvefit(@f,[0;0;0],x1,omega_nm);
+yfit_nm_omega =  constant(3) +(1-constant(2)).^x1*(constant(1)-constant(3));
+pa_nm_omega = constant(3); % asymptotic value for the x which I dont know what it is...Hail lucifer
+p0_nm_omega = constant(1); % inital value for the x which I dont know what it is...Hail lucifer
+Fu_nm_omega = constant(2);
+plot(x1,omega_nm,'*')
+hold on
+plot(x1,yfit_nm_omega,'r')
+hold off
+
+kp_m = human_par_M(:,1);
+Tl_m = human_par_M(:,2);
+Tp_m  = human_par_M(:,3);
+zeta_m = human_par_M(:,4);
+omega_m = human_par_M(:,5);
+
+constant = lsqcurvefit(@f,[0;0;0],x1,kp_m);
+yfit_m_kp =  constant(3) +(1-constant(2)).^x1*(constant(1)-constant(3));
+pa_m_kp = constant(3); % asymptotic value for the x which I dont know what it is...Hail lucifer
+p0_m_kp = constant(1); % inital value for the x which I dont know what it is...Hail lucifer
+Fu_m_kp = constant(2);
+
+figure(12);
+plot(x1,kp_m,'*')
+hold on
+plot(x1,yfit_m_kp,'r')
+hold off
+
+constant = lsqcurvefit(@f,[0;0;0],x1,Tl_m);
+yfit_m_Tl =  constant(3) +(1-constant(2)).^x1*(constant(1)-constant(3));
+pa_m_Tl = constant(3); % asymptotic value for the x which I dont know what it is...Hail lucifer
+p0_m_Tl = constant(1); % inital value for the x which I dont know what it is...Hail lucifer
+Fu_m_Tl = constant(2);
+
+figure(13);
+plot(x1,Tl_m,'*')
+hold on
+plot(x1,yfit_m_Tl,'r')
+hold off
+
+figure(14);
+constant = lsqcurvefit(@f,[0;0;0],x1,Tp_m);
+yfit_m_Tp =  constant(3) +(1-constant(2)).^x1*(constant(1)-constant(3));
+pa_m_Tp = constant(3); % asymptotic value for the x which I dont know what it is...Hail lucifer
+p0_m_Tp = constant(1); % inital value for the x which I dont know what it is...Hail lucifer
+Fu_m_Tp = constant(2);
+plot(x1,Tp_m,'*')
+hold on
+plot(x1,yfit_m_Tp,'r')
+hold off
+
+figure(15);
+constant = lsqcurvefit(@f,[0;0;0],x1,zeta_m);
+yfit_m_zeta =  constant(3) +(1-constant(2)).^x1*(constant(1)-constant(3));
+pa_m_zeta = constant(3); % asymptotic value for the x which I dont know what it is...Hail lucifer
+p0_m_zeta = constant(1); % inital value for the x which I dont know what it is...Hail lucifer
+Fu_m_zeta = constant(2);
+plot(x1,zeta_m,'*')
+hold on
+plot(x1,yfit_m_zeta,'r')
+hold off
+
+figure(16);
+constant = lsqcurvefit(@f,[0;0;0],x1,omega_m);
+yfit_m_omega =  constant(3) +(1-constant(2)).^x1*(constant(1)-constant(3));
+pa_m_omega = constant(3); % asymptotic value for the x which I dont know what it is...Hail lucifer
+p0_m_omega = constant(1); % inital value for the x which I dont know what it is...Hail lucifer
+Fu_m_omega = constant(2);
+plot(x1,omega_m,'*')
+hold on
+plot(x1,yfit_m_omega,'r')
+hold off
+
+val
