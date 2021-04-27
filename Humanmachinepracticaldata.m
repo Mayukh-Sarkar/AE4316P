@@ -460,27 +460,27 @@ plot(x1,Tp_nm,'*')
 hold on
 plot(x1,yfit_nm_Tp,'r')
 hold off
-
+x2 = [2:1:60]';
 figure(10);
-constant = lsqcurvefit(@f,[0;0;0],x1,zeta_nm);
-yfit_nm_zeta =  constant(3) +(1-constant(2)).^x1*(constant(1)-constant(3));
+constant = lsqcurvefit(@f,[0;0;0],x2,zeta_nm(2:end,:));
+yfit_nm_zeta =  constant(3) +(1-constant(2)).^x2*(constant(1)-constant(3));
 pa_nm_zeta = constant(3); % asymptotic value for the x which I dont know what it is...Hail lucifer
 p0_nm_zeta = constant(1); % inital value for the x which I dont know what it is...Hail lucifer
 Fu_nm_zeta = constant(2);
-plot(x1,zeta_nm,'*')
+plot(x2,zeta_nm(2:end,:),'*')
 hold on
-plot(x1,yfit_nm_zeta,'r')
+plot(x2,yfit_nm_zeta,'r')
 hold off
 
 figure(11);
-constant = lsqcurvefit(@f,[0;0;0],x1,omega_nm);
-yfit_nm_omega =  constant(3) +(1-constant(2)).^x1*(constant(1)-constant(3));
+constant = lsqcurvefit(@f,[0;0;0],x2,omega_nm(2:end,:));
+yfit_nm_omega =  constant(3) +(1-constant(2)).^x2*(constant(1)-constant(3));
 pa_nm_omega = constant(3); % asymptotic value for the x which I dont know what it is...Hail lucifer
 p0_nm_omega = constant(1); % inital value for the x which I dont know what it is...Hail lucifer
 Fu_nm_omega = constant(2);
-plot(x1,omega_nm,'*')
+plot(x2,omega_nm(2:end,:),'*')
 hold on
-plot(x1,yfit_nm_omega,'r')
+plot(x2,yfit_nm_omega,'r')
 hold off
 
 kp_m = human_par_M(:,1);
@@ -525,25 +525,25 @@ plot(x1,yfit_m_Tp,'r')
 hold off
 
 figure(15);
-constant = lsqcurvefit(@f,[0;0;0],x1,zeta_m);
-yfit_m_zeta =  constant(3) +(1-constant(2)).^x1*(constant(1)-constant(3));
+constant = lsqcurvefit(@f,[0;0;0],x2,zeta_m(2:end,:));
+yfit_m_zeta =  constant(3) +(1-constant(2)).^x2*(constant(1)-constant(3));
 pa_m_zeta = constant(3); % asymptotic value for the x which I dont know what it is...Hail lucifer
 p0_m_zeta = constant(1); % inital value for the x which I dont know what it is...Hail lucifer
 Fu_m_zeta = constant(2);
-plot(x1,zeta_m,'*')
+plot(x2,zeta_m(2:end,:),'*')
 hold on
-plot(x1,yfit_m_zeta,'r')
+plot(x2,yfit_m_zeta,'r')
 hold off
 
 figure(16);
-constant = lsqcurvefit(@f,[0;0;0],x1,omega_m);
-yfit_m_omega =  constant(3) +(1-constant(2)).^x1*(constant(1)-constant(3));
+constant = lsqcurvefit(@f,[0;0;0],x2,omega_m(2:end,:));
+yfit_m_omega =  constant(3) +(1-constant(2)).^x2*(constant(1)-constant(3));
 pa_m_omega = constant(3); % asymptotic value for the x which I dont know what it is...Hail lucifer
 p0_m_omega = constant(1); % inital value for the x which I dont know what it is...Hail lucifer
 Fu_m_omega = constant(2);
-plot(x1,omega_m,'*')
+plot(x2,omega_m(2:end,:),'*')
 hold on
-plot(x1,yfit_m_omega,'r')
+plot(x2,yfit_m_omega,'r')
 hold off
 
 val
