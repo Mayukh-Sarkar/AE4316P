@@ -22,10 +22,10 @@ RMS_M8_e = rms(groupM_data_subj8.e);
 x = [1:1:60];
 RMS_M_e = [RMS_M1_e;RMS_M2_e;RMS_M3_e;RMS_M4_e;RMS_M5_e;RMS_M6_e;RMS_M7_e;RMS_M8_e];
 Med_M_e = median(RMS_M_e);
-figure(1)
-scatter(x,Med_M_e,'*')
-hold on
-x = [1:1:60];
+% figure(1)
+% scatter(x,Med_M_e,'*')
+% hold on
+% x = [1:1:60];
 y_m_e = Med_M_e;
 constant = lsqcurvefit(@f,[0;0;0],x,y_m_e); % curve fit for the mean error across 60 runs
 pa_e = constant(3); % asymptotic values
@@ -34,9 +34,9 @@ Fe = constant(2); % learning curve slope
 
 yfit_e =  constant(3) +(1-constant(2)).^x*(constant(1)-constant(3)); % curve fitting values acrros 60 runs
 
-hold on
-plot(x,yfit_e,'r');
-hold off
+% hold on
+% plot(x,yfit_e,'r');
+% hold off
 
 
 %% input motion
@@ -51,8 +51,8 @@ RMS_M7_u = rms(groupM_data_subj7.u);
 RMS_M8_u = rms(groupM_data_subj8.u);
 RMS_M_u = [RMS_M1_u;RMS_M2_u;RMS_M3_u;RMS_M4_u;RMS_M5_u;RMS_M6_u;RMS_M7_u;RMS_M8_u];
 x = [1:1:60];
-y_u = median(RMS_M_u);
-constant = lsqcurvefit(@f,[0;0;0],x,y_u); % curve fitting function for input u
+med_u = median(RMS_M_u);
+constant = lsqcurvefit(@f,[0;0;0],x,med_u); % curve fitting function for input u
 pa_u = constant(3); % asymptotic value of the input curve
 p0_u = constant(1); % initial error value for the input
 F_u = constant(2);% learning slope 
@@ -75,8 +75,8 @@ RMS_M7_x = rms(groupM_data_subj7.x);
 RMS_M8_x = rms(groupM_data_subj8.x);
 RMS_M_x = [RMS_M1_x;RMS_M2_x;RMS_M3_x;RMS_M4_x;RMS_M5_x;RMS_M6_x;RMS_M7_x;RMS_M8_x];
 x = [1:1:60];
-y_x = median(RMS_M_x);
-constant = lsqcurvefit(@f,[0;0;0],x,y_x); % leanring curve model
+med_x = median(RMS_M_x);
+constant = lsqcurvefit(@f,[0;0;0],x,med_x); % leanring curve model
 pa_x = constant(3); % asymptotic value for the x which I dont know what it is...Hail lucifer
 p0_x = constant(1); % initial value for the x which I dont know what it is...Hail lucifer
 Fu_x = constant(2); % learning curve slope for the x which I dont know what it is...Hail lucifer
@@ -102,6 +102,7 @@ RMS_NM8_e = rms(groupNM_data_subj8.e);
 x = [1:1:60];
 RMS_NM_e = [RMS_NM1_e;RMS_NM2_e;RMS_NM3_e;RMS_NM4_e;RMS_NM5_e;RMS_NM6_e;RMS_NM7_e;RMS_NM8_e];
 y_nm_e = median(RMS_NM_e);
+
 constant = lsqcurvefit(@f,[0;0;0],x,y_nm_e); % fitting curve
 yfit_nm_e =  constant(3) +(1-constant(2)).^x*(constant(1)-constant(3)); % valyes of the fitting curve
 pa_nm_e = constant(3); % asymptotic values for non motion error
@@ -110,6 +111,7 @@ Fu_nm_e = constant(2); % learning curve rate
 figure(4);
 boxplot(RMS_NM_e)
 hold on
+
 plot(x,yfit_nm_e,'r');
 hold off
 %% nm inpuut

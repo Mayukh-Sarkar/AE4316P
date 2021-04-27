@@ -1,0 +1,33 @@
+%% motion group
+x = [1:1:60];
+%plotting error
+figure(1)
+scatter(x,Med_M_e,'k','o')
+hold on
+plot(x,yfit_e,'Color');
+hold on
+plot(x,yfit_e+0.03,'--');
+hold on
+plot(x,yfit_e-0.02,'--');
+hold off
+xlabel('Trial runs')
+ylabel('RMS(e)')
+legend('RMS(e)','Learning curve')
+plotting stick input
+figure(2)
+scatter(x,med_u,'*')
+hold on
+plot(x,yfit_u,'r');
+hold off
+xlabel('Trial runs')
+ylabel('RMS(u)')
+legend('RMS(u)','Learning curve')
+ %plotting stick deflection
+figure(3)
+scatter(x,med_x,'*')
+hold on
+plot(x,yfit_x,'r');
+hold off
+xlabel('Trial runs')
+ylabel('RMS(x)')
+legend('RMS(x)','Learning curve')
