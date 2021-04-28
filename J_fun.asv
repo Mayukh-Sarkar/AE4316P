@@ -284,7 +284,7 @@ for i = 1 : N_runs
 end
 
 
-% title = "Bode plot for run 1 and 60 from participant 1 in Non-Moving simulator" ;
+title = "Bode plot for run 1 and 60 from participant 1 in Non-Moving simulator" ;
 figure(2)
 set(gcf, 'Position', [100 100 700 650])
 subplot(2,1,1)
@@ -314,7 +314,7 @@ axis([10.^-1 10.^1.5 -360 180])
 xlabel("\omega [rad/s]")
 ylabel("\angle H_{p} (j \omega) [deg]")
 legend('Test data run 1','Test data run 60','Model run 1','Model run 60','Location','southwest')
-% sgtitle(title)
+sgtitle(title)
 
 x_axis = [1:1:60];
 
@@ -340,26 +340,26 @@ legend({'K_p','Learning curve','Upper bound','Lower Bound'},'Location','northeas
 legend('location','northeast')
 %plotting time lead
 figure(14)
-scatter(x_axis,Tl_nm,'k','o')
+scatter(x,Tl_nm,'k','o')
 hold on
-plot(x_axis,yfit_nm_Tl,'r','LineStyle','--','LineWidth',1.2);
+plot(x,yfit_nm_Tl,'r','LineStyle','--','LineWidth',1.2);
 hold on
-plot(x_axis,yfit_nm_Tl+0.03,'color',[0 0.5 0],'LineStyle','--','LineWidth',1.2);
+plot(x,yfit_nm_Tl+0.03,'color',[0 0.5 0],'LineStyle','--','LineWidth',1.2);
 hold on
-plot(x_axis,yfit_nm_Tl-0.03,'color',[0 0 0.5],'LineStyle','--','LineWidth',1.2);
+plot(x,yfit_nm_Tl-0.03,'color',[0 0 0.5],'LineStyle','--','LineWidth',1.2);
 hold off
 xlabel('Trial runs')
 ylabel('\tau_L')
 legend({'\tau_L','Learning curve','Upper bound','Lower Bound'},'Location','northeast','Orientation','vertical')
 %plotting pilot time
 figure(15)
-scatter(x_axis,Tp_nm,'k','o')
+scatter(x,Tp_nm,'k','o')
 hold on
-plot(x_axis,yfit_nm_Tp,'r','LineStyle','--','LineWidth',1.2);
+plot(x,yfit_nm_Tp,'r','LineStyle','--','LineWidth',1.2);
 hold on
-plot(x_axis,yfit_nm_Tp+0.03,'color',[0 0.5 0],'LineStyle','--','LineWidth',1.2);
+plot(x,yfit_nm_Tp+0.03,'color',[0 0.5 0],'LineStyle','--','LineWidth',1.2);
 hold on
-plot(x_axis,yfit_nm_Tp-0.03,'color',[0 0 0.5],'LineStyle','--','LineWidth',1.2);
+plot(x,yfit_nm_Tp-0.03,'color',[0 0 0.5],'LineStyle','--','LineWidth',1.2);
 hold off
 xlabel('Trial runs')
 ylabel('\tau_p')
