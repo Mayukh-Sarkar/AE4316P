@@ -11,7 +11,7 @@ hold on
 plot(x,yfit_e-0.03,'color',[0 0 0.5],'LineStyle','--','LineWidth',1.2);
 hold off
 xlabel('Trial runs')
-ylabel('RMS(e)')
+ylabel('RMS_m(e)')
 legend({'RMS(e)','Learning curve','Upper bound','Lower Bound'},'Location','northeast','Orientation','vertical')
 legend('location','northeast')
 %%%plottinf stick input
@@ -25,7 +25,7 @@ hold on
 plot(x,yfit_u-0.03,'color',[0 0 0.5],'LineStyle','--','LineWidth',1.2);
 hold off
 xlabel('Trial runs')
-ylabel('RMS(u)')
+ylabel('RMS_m(u)')
 legend({'RMS(u)','Learning curve','Upper bound','Lower Bound'},'Location','northeast','Orientation','vertical')
 %%plottinf stick deflection
 figure(3)
@@ -38,7 +38,7 @@ hold on
 plot(x,yfit_x-0.03,'color',[0 0 0.5],'LineStyle','--','LineWidth',1.2);
 hold off
 xlabel('Trial runs')
-ylabel('RMS(x)')
+ylabel('RMS_m(x)')
 legend({'RMS(x)','Learning curve','Upper bound','Lower Bound'},'Location','northeast','Orientation','vertical')
 
 figure(4)
@@ -52,7 +52,7 @@ hold on
 plot(x,yfit_m_kp-0.1,'color',[0 0 0.5],'LineStyle','--','LineWidth',1.2);
 hold off
 xlabel('Trial runs')
-ylabel('K_p')
+ylabel('K_p_m')
 legend({'K_p','Learning curve','Upper bound','Lower Bound'},'Location','northeast','Orientation','vertical')
 legend('location','northeast')
 %%plottinf time lead
@@ -66,7 +66,7 @@ hold on
 plot(x,yfit_m_Tl-0.03,'color',[0 0 0.5],'LineStyle','--','LineWidth',1.2);
 hold off
 xlabel('Trial runs')
-ylabel('\tau_L')
+ylabel('\tau_L_m')
 legend({'\tau_L','Learning curve','Upper bound','Lower Bound'},'Location','northeast','Orientation','vertical')
 %%plottinf pilot time
 figure(6)
@@ -79,7 +79,7 @@ hold on
 plot(x,yfit_m_Tp-0.03,'color',[0 0 0.5],'LineStyle','--','LineWidth',1.2);
 hold off
 xlabel('Trial runs')
-ylabel('\tau_p')
+ylabel('\tau_p_m')
 legend({'\tau_p','Learning curve','Upper bound','Lower Bound'},'Location','northeast','Orientation','vertical')
 %%plottinf damping
 x_new = [2:1:60];
@@ -93,8 +93,8 @@ hold on
 plot(x_new,(yfit_m_zeta-0.03),'color',[0 0 0.5],'LineStyle','--','LineWidth',1.2);
 hold off
 xlabel('Trial runs')
-ylabel('\zeta_{nm}')
-legend({'\zeta_{nm}','Learning curve','Upper bound','Lower Bound'},'Location','northeast','Orientation','vertical')
+ylabel('\zeta_{m}')
+legend({'\zeta_{m}','Learning curve','Upper bound','Lower Bound'},'Location','northeast','Orientation','vertical')
 %%plottinf omemga
 figure(8)
 scatter(x_new,omega_m(2:end,:),'k','o')
@@ -106,10 +106,10 @@ hold on
 plot(x_new,yfit_m_omega-0.1,'color',[0 0 0.5],'LineStyle','--','LineWidth',1.2);
 hold off
 xlabel('Trial runs')
-ylabel('\omega_{nm}')
-legend({'\omega_{nm}','Learning curve','Upper bound','Lower Bound'},'Location','northeast','Orientation','vertical')
+ylabel('\omega_{m}')
+legend({'\omega_{m}','Learning curve','Upper bound','Lower Bound'},'Location','northeast','Orientation','vertical')
 
-% non motion
+%% non motion
 %plottinf error
 figure(10)
 scatter(x,y_nm_e,'k','o')
@@ -121,7 +121,7 @@ hold on
 plot(x,yfit_nm_e-0.02,'color',[0 0 0.5],'LineStyle','--','LineWidth',1.2);
 hold off
 xlabel('Trial runs')
-ylabel('RMS(e)')
+ylabel('RMS_{nm}(e)')
 legend({'RMS(e)','Learning curve','Upper bound','Lower Bound'},'Location','northeast','Orientation','vertical')
 %%plottinf stick input
 figure(11)
@@ -134,7 +134,7 @@ hold on
 plot(x,yfit_nm_u-0.05,'color',[0 0 0.5],'LineStyle','--','LineWidth',1.2);
 hold off
 xlabel('Trial runs')
-ylabel('RMS(u)')
+ylabel('RMS_{nm}(u)')
 legend({'RMS(u)','Learning curve','Upper bound','Lower Bound'},'Location','northeast','Orientation','vertical')
 %%plottinf stick deflection
 figure(12)
@@ -147,7 +147,7 @@ hold on
 plot(x,yfit_nm_x-0.01,'color',[0 0 0.5],'LineStyle','--','LineWidth',1.2);
 hold off
 xlabel('Trial runs')
-ylabel('RMS(x)')
+ylabel('RMS_{nm}(x)')
 legend({'RMS(x)','Learning curve','Upper bound','Lower Bound'},'Location','northeast','Orientation','vertical')
 
 %plottinf pilot gain
@@ -161,7 +161,7 @@ hold on
 plot(x,yfit_nm_kp-0.1,'color',[0 0 0.5],'LineStyle','--','LineWidth',1.2);
 hold off
 xlabel('Trial runs')
-ylabel('K_p')
+ylabel('K_p_{nm}')
 legend({'K_p','Learning curve','Upper bound','Lower Bound'},'Location','northeast','Orientation','vertical')
 legend('location','northeast')
 %plottinf time lead
@@ -175,7 +175,7 @@ hold on
 plot(x,yfit_nm_Tl-0.03,'color',[0 0 0.5],'LineStyle','--','LineWidth',1.2);
 hold off
 xlabel('Trial runs')
-ylabel('\tau_L')
+ylabel('\tau_L_{nm}')
 legend({'\tau_L','Learning curve','Upper bound','Lower Bound'},'Location','northeast','Orientation','vertical')
 %plottinf pilot time
 figure(15)
@@ -188,7 +188,7 @@ hold on
 plot(x,yfit_nm_Tp-0.03,'color',[0 0 0.5],'LineStyle','--','LineWidth',1.2);
 hold off
 xlabel('Trial runs')
-ylabel('\tau_p')
+ylabel('\tau_p_{nm}')
 legend({'\tau_p','Learning curve','Upper bound','Lower Bound'},'Location','northeast','Orientation','vertical')
 %plottinf damping
 x_new = [2:1:60];
