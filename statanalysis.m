@@ -12,11 +12,10 @@ H_1 = 1;
 
 if Henm == 0 && Hem == 0 && Hunm == 0 && Hum == 0
     disp('H_0 is accepted , samples are normally distributed ')
-    [Htenm , ptenm] = ttest(mean(testRMS_e_nm));
-    [Htem , ptem] = ttest(mean(testRMS_e_m));
-    [Htunm , ptunm] = ttest(mean(testRMS_u_nm));
-    [Htum , ptum] = ttest(mean(testRMS_u_m));
-    if Htenm == 0 && Htem == 0 && Htunm == 0 && Htum == 0 
+    [Hte , pte] = ttest2(mean(testRMS_e_nm),mean(testRMS_e_m));
+    [Htu , ptu] = ttest2(mean(testRMS_u_nm),mean(testRMS_u_m));
+    
+    if Hte == 0 && Htu == 0 
         disp("Null hypothesis cannot be rejected, accept H_0,accept hypothesis 2")
     else 
         disp("Null hypothesis cannot be tested , accept H_1,reject hypothesis 2")
