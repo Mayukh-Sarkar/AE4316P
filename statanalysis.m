@@ -16,9 +16,17 @@ if Henm == 0 && Hem == 0 && Hunm == 0 && Hum == 0
     [Htem , ptem] = ttest(mean(testRMS_e_m));
     [Htunm , ptunm] = ttest(mean(testRMS_u_nm));
     [Htum , ptum] = ttest(mean(testRMS_u_m));
-    if Htenm == 0 && Htem == 0 && Htunm == 0 && Htum == 0
+    if Htenm == 0 && Htem == 0 && Htunm == 0 && Htum == 0 
         disp('H_0 is true, two distributions are identitcal accept hypothesis 2')
     else 
         disp('H_1 is true, two distributions are non- reject hypothesis 2')
+    end
+elseif Henm == 1 && Hem == 1 && Hunm == 1 && Hum == 1
+    [pUe,hUe,statsUe] = ranksum(mean(testRMS_e_nm),mean(testRMS_e_m));
+    [pUu,hUu,statsUu] = ranksum(mean(testRMS_u_nm),mean(testRMS_u_m));
+    if hUe == 0 && hUu == 0
+        disp("Null hypothesis cannot be rejected, accept H_0")
+    else
+        disp("Null hypothesis cannot be tested , accept H_1")
     end
 end

@@ -58,11 +58,11 @@ p0_u = constant(1); % initial error value for the input
 F_u = constant(2);% learning slope 
 yfit_u =  constant(3) +(1-constant(2)).^x*(constant(1)-constant(3)); % value for the fit
 
-figure(2);
-boxplot(RMS_M_u)
-hold on
-plot(x,yfit_u,'r');
-hold off
+% figure(2);
+% boxplot(RMS_M_u)
+% hold on
+% plot(x,yfit_u,'r');
+% hold off
  %% x motion
 %%%%%%% Plot RMS(x) %%%%%%%
 RMS_M1_x = rms(groupM_data_subj1.x);
@@ -82,11 +82,11 @@ p0_x = constant(1); % initial value for the x which I dont know what it is...Hai
 Fu_x = constant(2); % learning curve slope for the x which I dont know what it is...Hail lucifer
 yfit_x =  constant(3) +(1-constant(2)).^x*(constant(1)-constant(3)); % fittig curve value for each trial
  
-figure(3);
-boxplot(RMS_M_x)
-hold on
-plot(x,yfit_x,'r');
-hold off
+% figure(3);
+% boxplot(RMS_M_x)
+% hold on
+% plot(x,yfit_x,'r');
+% hold off
 
 %% nonmotion error
 %%%%%%% Plot RMS(e) %%%%%%%
@@ -108,12 +108,12 @@ yfit_nm_e =  constant(3) +(1-constant(2)).^x*(constant(1)-constant(3)); % valyes
 pa_nm_e = constant(3); % asymptotic values for non motion error
 p0_nm_e = constant(1); % initial value for non motion error
 Fu_nm_e = constant(2); % learning curve rate
-figure(4);
-boxplot(RMS_NM_e)
-hold on
-
-plot(x,yfit_nm_e,'r');
-hold off
+% figure(4);
+% boxplot(RMS_NM_e)
+% hold on
+% 
+% plot(x,yfit_nm_e,'r');
+% hold off
 %% nm inpuut
 %%%%%%% Plot RMS(u) %%%%%%%
 RMS_NM1_u = rms(groupNM_data_subj1.u);
@@ -131,11 +131,11 @@ yfit_nm_u =  constant(3) +(1-constant(2)).^x*(constant(1)-constant(3)); % learni
 pa_nm_u = constant(3); % asymptotic valuue for thge input curve
 p0_nm_u = constant(1); % inital value of the input curve
 Fu_nm_u = constant(2);% learning rate
-figure(5);
-boxplot(RMS_NM_u)
-hold on
-plot(x,yfit_nm_u,'r')
-hold off
+% figure(5);
+% boxplot(RMS_NM_u)
+% hold on
+% plot(x,yfit_nm_u,'r')
+% hold off
 %%%%%%% Plot RMS(u) %%%%%%%
 %% nm x
 RMS_NM1_x = rms(groupNM_data_subj1.x);
@@ -153,11 +153,11 @@ yfit_nm_x =  constant(3) +(1-constant(2)).^x*(constant(1)-constant(3));
 pa_nm_x = constant(3); % asymptotic value for the x which I dont know what it is...Hail lucifer
 p0_nm_x = constant(1); % inital value for the x which I dont know what it is...Hail lucifer
 Fu_nm_x = constant(2); % leanring rate  for the x which I dont know what it is...Hail lucifer
-figure(6);
-boxplot(RMS_NM_x)
-hold on
-plot(x,yfit_nm_x,'r')
-hold off
+% figure(6);
+% boxplot(RMS_NM_x)
+% hold on
+% plot(x,yfit_nm_x,'r')
+% hold off
 
 
 
@@ -432,11 +432,11 @@ pa_nm_kp = constant(3); % asymptotic value for the x which I dont know what it i
 p0_nm_kp = constant(1); % inital value for the x which I dont know what it is...Hail lucifer
 Fu_nm_kp = constant(2);
 
-figure(7);
-plot(x1,kp_nm,'*')
-hold on
-plot(x1,yfit_nm_kp,'r')
-hold off
+% figure(7);
+% plot(x1,kp_nm,'*')
+% hold on
+% plot(x1,yfit_nm_kp,'r')
+% hold off
 
 constant = lsqcurvefit(@f,[0;0;0],x1,Tl_nm);
 yfit_nm_Tl =  constant(3) +(1-constant(2)).^x1*(constant(1)-constant(3));
@@ -444,44 +444,44 @@ pa_nm_Tl = constant(3); % asymptotic value for the x which I dont know what it i
 p0_nm_Tl = constant(1); % inital value for the x which I dont know what it is...Hail lucifer
 Fu_nm_Tl = constant(2);
 
-figure(8);
-plot(x1,Tl_nm,'*')
-hold on
-plot(x1,yfit_nm_Tl,'r')
-hold off
+% figure(8);
+% plot(x1,Tl_nm,'*')
+% hold on
+% plot(x1,yfit_nm_Tl,'r')
+% hold off
 
-figure(9);
+%figure(9);
 constant = lsqcurvefit(@f,[0;0;0],x1,Tp_nm);
 yfit_nm_Tp =  constant(3) +(1-constant(2)).^x1*(constant(1)-constant(3));
 pa_nm_Tp = constant(3); % asymptotic value for the x which I dont know what it is...Hail lucifer
 p0_nm_Tp = constant(1); % inital value for the x which I dont know what it is...Hail lucifer
 Fu_nm_Tp = constant(2);
-plot(x1,Tp_nm,'*')
-hold on
-plot(x1,yfit_nm_Tp,'r')
-hold off
+% plot(x1,Tp_nm,'*')
+% hold on
+% plot(x1,yfit_nm_Tp,'r')
+% hold off
 x2 = [2:1:60]';
-figure(10);
+%figure(10);
 constant = lsqcurvefit(@f,[0;0;0],x2,zeta_nm(2:end,:));
 yfit_nm_zeta =  constant(3) +(1-constant(2)).^x2*(constant(1)-constant(3));
 pa_nm_zeta = constant(3); % asymptotic value for the x which I dont know what it is...Hail lucifer
 p0_nm_zeta = constant(1); % inital value for the x which I dont know what it is...Hail lucifer
 Fu_nm_zeta = constant(2);
-plot(x2,zeta_nm(2:end,:),'*')
-hold on
-plot(x2,yfit_nm_zeta,'r')
-hold off
+% plot(x2,zeta_nm(2:end,:),'*')
+% hold on
+% plot(x2,yfit_nm_zeta,'r')
+% hold off
 
-figure(11);
+%figure(11);
 constant = lsqcurvefit(@f,[0;0;0],x2,omega_nm(2:end,:));
 yfit_nm_omega =  constant(3) +(1-constant(2)).^x2*(constant(1)-constant(3));
 pa_nm_omega = constant(3); % asymptotic value for the x which I dont know what it is...Hail lucifer
 p0_nm_omega = constant(1); % inital value for the x which I dont know what it is...Hail lucifer
 Fu_nm_omega = constant(2);
-plot(x2,omega_nm(2:end,:),'*')
-hold on
-plot(x2,yfit_nm_omega,'r')
-hold off
+% plot(x2,omega_nm(2:end,:),'*')
+% hold on
+% plot(x2,yfit_nm_omega,'r')
+% hold off
 
 kp_m = human_par_M(:,1);
 Tl_m = human_par_M(:,2);
@@ -495,11 +495,11 @@ pa_m_kp = constant(3); % asymptotic value for the x which I dont know what it is
 p0_m_kp = constant(1); % inital value for the x which I dont know what it is...Hail lucifer
 Fu_m_kp = constant(2);
 
-figure(12);
-plot(x1,kp_m,'*')
-hold on
-plot(x1,yfit_m_kp,'r')
-hold off
+% figure(12);
+% plot(x1,kp_m,'*')
+% hold on
+% plot(x1,yfit_m_kp,'r')
+% hold off
 
 constant = lsqcurvefit(@f,[0;0;0],x1,Tl_m);
 yfit_m_Tl =  constant(3) +(1-constant(2)).^x1*(constant(1)-constant(3));
@@ -507,43 +507,43 @@ pa_m_Tl = constant(3); % asymptotic value for the x which I dont know what it is
 p0_m_Tl = constant(1); % inital value for the x which I dont know what it is...Hail lucifer
 Fu_m_Tl = constant(2);
 
-figure(13);
-plot(x1,Tl_m,'*')
-hold on
-plot(x1,yfit_m_Tl,'r')
-hold off
+% figure(13);
+% plot(x1,Tl_m,'*')
+% hold on
+% plot(x1,yfit_m_Tl,'r')
+% hold off
 
-figure(14);
+%figure(14);
 constant = lsqcurvefit(@f,[0;0;0],x1,Tp_m);
 yfit_m_Tp =  constant(3) +(1-constant(2)).^x1*(constant(1)-constant(3));
 pa_m_Tp = constant(3); % asymptotic value for the x which I dont know what it is...Hail lucifer
 p0_m_Tp = constant(1); % inital value for the x which I dont know what it is...Hail lucifer
 Fu_m_Tp = constant(2);
-plot(x1,Tp_m,'*')
-hold on
-plot(x1,yfit_m_Tp,'r')
-hold off
+% plot(x1,Tp_m,'*')
+% hold on
+% plot(x1,yfit_m_Tp,'r')
+% hold off
 
-figure(15);
+%figure(15);
 constant = lsqcurvefit(@f,[0;0;0],x2,zeta_m(2:end,:));
 yfit_m_zeta =  constant(3) +(1-constant(2)).^x2*(constant(1)-constant(3));
 pa_m_zeta = constant(3); % asymptotic value for the x which I dont know what it is...Hail lucifer
 p0_m_zeta = constant(1); % inital value for the x which I dont know what it is...Hail lucifer
 Fu_m_zeta = constant(2);
-plot(x2,zeta_m(2:end,:),'*')
-hold on
-plot(x2,yfit_m_zeta,'r')
-hold off
+% plot(x2,zeta_m(2:end,:),'*')
+% hold on
+% plot(x2,yfit_m_zeta,'r')
+% hold off
 
-figure(16);
+%figure(16);
 constant = lsqcurvefit(@f,[0;0;0],x2,omega_m(2:end,:));
 yfit_m_omega =  constant(3) +(1-constant(2)).^x2*(constant(1)-constant(3));
 pa_m_omega = constant(3); % asymptotic value for the x which I dont know what it is...Hail lucifer
 p0_m_omega = constant(1); % inital value for the x which I dont know what it is...Hail lucifer
 Fu_m_omega = constant(2);
-plot(x2,omega_m(2:end,:),'*')
-hold on
-plot(x2,yfit_m_omega,'r')
-hold off
+% plot(x2,omega_m(2:end,:),'*')
+% hold on
+% plot(x2,yfit_m_omega,'r')
+% hold off
 
 val
