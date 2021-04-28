@@ -45,21 +45,24 @@ for i = 1 : N_runs
 
     for m = 1 : N_participants
         H_pe = zeros(length(w),1) ; 
-        f = @(x) 0 ;
+        fun = @(x) 0 ;
 
         Phase = phase_M(:,m);
         Mag = mag_M(:,m);
         for k = 1 : length(w)
             H_pe(k) = Mag(k) * (cos(Phase(k)*pi/180) + 1j * sin(Phase(k)*pi/180)) ;
             g = @(x) (abs(H_pe(k) - x(1)*(1 + x(2)*(1j*w(k))) * exp(-1j*w(k)*x(3)) * (x(5)^2/(x(5)^2 + 2*x(4)*x(5)*1j*w(k) + (1j*w(k))^2))))^2;
-            f = @(x) f(x) + g(x) ;
+            fun = @(x) fun(x) + g(x) ;
             data_mag1(i,k) = Mag(k) ;
             data_phase1(i,k) = Phase(k) ;
         end
 
         x0 = [3, 1, 0.35, 0.5, 15] ;
         % [x,fval,exitflag,output] = fminsearch(f, x0, options);
-        x = fminsearch(f,x0,options);
+%         x = fminsearch(f,x0,options);
+        lb = [0, 0, 0, 0, 5];
+        ub = [100, 10, 10, 1, 30];
+        x = fmincon(fun,x0,[],[],[],[],lb,ub,[],options);
 
         human_par_M_Kp(i,m) = x(1) ;
         human_par_M_TL(i,m) = x(2) ;
@@ -249,21 +252,24 @@ for i = 1 : N_runs
 
     for m = 1 : N_participants
         H_pe = zeros(length(w),1) ; 
-        f = @(x) 0 ;
+        fun = @(x) 0 ;
 
         Phase = phase_NM(:,m);
         Mag = mag_NM(:,m);
         for k = 1 : length(w)
             H_pe(k) = Mag(k) * (cos(Phase(k)*pi/180) + 1j * sin(Phase(k)*pi/180)) ;
             g = @(x) (abs(H_pe(k) - x(1)*(1 + x(2)*(1j*w(k))) * exp(-1j*w(k)*x(3)) * (x(5)^2/(x(5)^2 + 2*x(4)*x(5)*1j*w(k) + (1j*w(k))^2))))^2;
-            f = @(x) f(x) + g(x) ;
+            fun = @(x) fun(x) + g(x) ;
             data_mag1_NM(i,k) = Mag(k) ;
             data_phase1_NM(i,k) = Phase(k) ;
         end
 
         x0 = [3, 1, 0.35, 0.5, 15] ;
         % [x,fval,exitflag,output] = fminsearch(f, x0, options);
-        x = fminsearch(f,x0,options);
+%         x = fminsearch(f,x0,options);
+        lb = [0, 0, 0, 0, 5];
+        ub = [100, 10, 10, 1, 30];
+        x = fmincon(fun,x0,[],[],[],[],lb,ub,[],options);
 
         human_par_NM_Kp(i,m) = x(1) ;
         human_par_NM_TL(i,m) = x(2) ;
