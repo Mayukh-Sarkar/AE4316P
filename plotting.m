@@ -5,10 +5,10 @@ figure(1)
 scatter(x,Med_M_e,'k','o')
 hold on
 plot(x,yfit_e,'r','LineStyle','--','LineWidth',1.2);
-hold on
-plot(x,yfit_e+0.03,'color',[0 0.5 0],'LineStyle','--','LineWidth',1.2);
-hold on
-plot(x,yfit_e-0.03,'color',[0 0 0.5],'LineStyle','--','LineWidth',1.2);
+%hold on
+%plot(x,yfit_e+0.03,'color',[0 0.5 0],'LineStyle','--','LineWidth',1.2);
+%hold on
+%plot(x,yfit_e-0.03,'color',[0 0 0.5],'LineStyle','--','LineWidth',1.2);
 hold off
 xlabel('Trial runs')
 ylabel('RMS_m(e)')
