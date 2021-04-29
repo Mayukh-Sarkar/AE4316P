@@ -421,8 +421,7 @@ x_axis = [1:1:60];
 %plotting pilot gain
 figure(4)
 set(gcf, 'Position', [100 100 900 650])
-h1 = subplot(3,2,[1,2]);
-size = get(h1,'position');
+subplot(3,2,1)
 ah=gca; 
 set(ah,'Fontsize',12)
 scatter(x_axis,kp_nm,'k','o')
@@ -435,12 +434,11 @@ plot(x_axis,yfit_m_kp,'k','LineStyle','--','LineWidth',1.2);
 hold off
 xlabel('Trial runs')
 ylabel('K_p')
-legend('Test data NM','Test data M','Learning curve NM','Learning curve M','Location','bestoutside')
 % ylim([-10,5])
 % legend({'K_p','Learning curve','Upper bound','Lower Bound'},'Location','northeast','Orientation','vertical')
 %plotting time lead
-h2 = subplot(3,2,3);
-size2 = get(h2,'position');
+h2 = subplot(3,2,2)
+size2 = get(h2,'position')
 ah=gca; 
 set(ah,'Fontsize',12)
 scatter(x_axis,Tl_nm,'k','o')
@@ -455,7 +453,9 @@ xlabel('Trial runs')
 ylabel('T_L')
 % legend({'\tau_L','Learning curve','Upper bound','Lower Bound'},'Location','northeast','Orientation','vertical')
 %plotting pilot time
-subplot(3,2,4);
+h1 = subplot(3,2,4);
+size = get(h1,'position');
+set(h1, 'position', [size(1), size(2), 1.51*size2(3), size(4)] );
 ah=gca; 
 set(ah,'Fontsize',12)
 scatter(x_axis,Tp_nm,'k','o')
@@ -468,6 +468,7 @@ plot(x_axis,yfit_m_Tp,'k','LineStyle','--','LineWidth',1.2);
 hold off
 xlabel('Trial runs')
 ylabel('\tau_p')
+legend('Test data NM','Test data M','Learning curve NM','Learning curve M','Location','bestoutside')
 % legend({'\tau_p','Learning curve','Upper bound','Lower Bound'},'Location','northeast','Orientation','vertical')
 %plotting damping
 
@@ -501,4 +502,3 @@ hold off
 xlabel('Trial runs')
 ylabel('\omega_{nm}')
 % legend({'\omega_{nm}','Learning curve','Upper bound','Lower Bound'},'Location','northeast','Orientation','vertical')
-set(h1, 'position', [size(1), size(2), 1.01*size2(3), size(4)] );
