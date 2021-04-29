@@ -108,7 +108,7 @@ for i = 1 : N_runs
         
 %         title = "Bode plot for run #" + num2str(i) + " from participant #" + num2str(m) ;
 % %         figure(N_participants*(i-1)+m)
-%         figure(i)
+%         figure(4+i)
 %         subplot(2,1,1)
 %         loglog(omega, mag_M(:,m), 'o')
 %         hold on
@@ -135,11 +135,11 @@ set(gcf, 'Position', [100 100 700 650])
 ah=gca; 
 set(ah,'Fontsize',12)
 subplot(2,1,1)
-loglog(omega, data_mag1(1,:),'ok')
+loglog(omega, data_mag1(2,:),'ok')
 hold on
-loglog(omega, data_mag1(60,:),'*k')
+loglog(omega_test, data_mag2(2,:),'-k')
 hold on
-loglog(omega_test, data_mag2(1,:),'-k')
+plot(omega, data_mag1(60,:),'*k')
 hold on
 loglog(omega_test, data_mag2(60,:),'--k')
 hold off
@@ -151,11 +151,11 @@ ylabel("|H_{p} (j \omega)| [-]")
 subplot(2,1,2)
 semilogx(omega, data_phase1(1,:),'ok')
 hold on
+semilogx(omega_test, data_phase2(1,:),'-k')
+hold on
 semilogx(omega, data_phase1(60,:),'*k')
 hold on
-loglog(omega_test, data_phase2(1,:),'-k')
-hold on
-loglog(omega_test, data_phase2(60,:),'--k')
+semilogx(omega_test, data_phase2(60,:),'--k')
 hold off
 axis([10.^-1 10.^1.5 -360 180])
 xlabel("\omega [rad/s]")
@@ -348,9 +348,9 @@ set(ah,'Fontsize',12)
 subplot(2,1,1)
 loglog(omega, data_mag1_NM(1,:),'ok')
 hold on
-loglog(omega, data_mag1_NM(60,:),'*k')
-hold on
 loglog(omega_test, data_mag2_NM(1,:),'-k')
+hold on
+loglog(omega, data_mag1_NM(60,:),'*k')
 hold on
 loglog(omega_test, data_mag2_NM(60,:),'--k')
 hold off
@@ -360,13 +360,13 @@ ylabel("|H_{p} (j \omega)| [-]")
 % legend('Test data run 1','Test data run 60','Model run 1','Model run 60','Location','southwest')
 
 subplot(2,1,2)
-semilogx(omega, data_phase1_NM(1,:),'ok')
+semilogx(omega, data_phase1_NM(2,:),'ok')
+hold on
+semilogx(omega_test, data_phase2_NM(2,:),'-k')
 hold on
 semilogx(omega, data_phase1_NM(60,:),'*k')
 hold on
-loglog(omega_test, data_phase2_NM(1,:),'-k')
-hold on
-loglog(omega_test, data_phase2_NM(60,:),'--k')
+semilogx(omega_test, data_phase2_NM(60,:),'--k')
 hold off
 axis([10.^-1 10.^1.5 -360 180])
 xlabel("\omega [rad/s]")
@@ -420,32 +420,34 @@ Fu_nm_omega = constant(2);
 x_axis = [1:1:60];
 %plotting pilot gain
 figure(4)
-set(gcf, 'Position', [100 100 900 650])
-subplot(3,2,1)
+set(gcf, 'Position', [100 100 1000 650])
+h1 = subplot(3,2,[1,2]);
+size = get(h1,'position');
 ah=gca; 
 set(ah,'Fontsize',12)
 scatter(x_axis,kp_nm,'k','o')
 hold on
-scatter(x_axis,kp_m,'k','*')
-hold on
 plot(x_axis,yfit_nm_kp,'k','LineStyle','-','LineWidth',1.2);
+hold on
+scatter(x_axis,kp_m,'k','filled')
 hold on
 plot(x_axis,yfit_m_kp,'k','LineStyle','--','LineWidth',1.2);
 hold off
 xlabel('Trial runs')
 ylabel('K_p')
+legend('Test data NM','Learning curve NM','Test data M','Learning curve M','Location','bestoutside')
 % ylim([-10,5])
 % legend({'K_p','Learning curve','Upper bound','Lower Bound'},'Location','northeast','Orientation','vertical')
 %plotting time lead
-h2 = subplot(3,2,2)
-size2 = get(h2,'position')
+h2 = subplot(3,2,3);
+size2 = get(h2,'position');
 ah=gca; 
 set(ah,'Fontsize',12)
 scatter(x_axis,Tl_nm,'k','o')
 hold on
-scatter(x_axis,Tl_m,'k','*')
-hold on
 plot(x_axis,yfit_nm_Tl,'k','LineStyle','-','LineWidth',1.2);
+hold on
+scatter(x_axis,Tl_m,'k','filled')
 hold on
 plot(x_axis,yfit_m_Tl,'k','LineStyle','--','LineWidth',1.2);
 hold off
@@ -453,22 +455,19 @@ xlabel('Trial runs')
 ylabel('T_L')
 % legend({'\tau_L','Learning curve','Upper bound','Lower Bound'},'Location','northeast','Orientation','vertical')
 %plotting pilot time
-h1 = subplot(3,2,4);
-size = get(h1,'position');
-set(h1, 'position', [size(1), size(2), 1.51*size2(3), size(4)] );
+subplot(3,2,4);
 ah=gca; 
 set(ah,'Fontsize',12)
 scatter(x_axis,Tp_nm,'k','o')
 hold on
-scatter(x_axis,Tp_m,'k','*')
-hold on
 plot(x_axis,yfit_nm_Tp,'k','LineStyle','-','LineWidth',1.2);
+hold on
+scatter(x_axis,Tp_m,'k','filled')
 hold on
 plot(x_axis,yfit_m_Tp,'k','LineStyle','--','LineWidth',1.2);
 hold off
 xlabel('Trial runs')
 ylabel('\tau_p')
-legend('Test data NM','Test data M','Learning curve NM','Learning curve M','Location','bestoutside')
 % legend({'\tau_p','Learning curve','Upper bound','Lower Bound'},'Location','northeast','Orientation','vertical')
 %plotting damping
 
@@ -478,9 +477,9 @@ ah=gca;
 set(ah,'Fontsize',12)
 scatter(x_new,zeta_nm(2:end,:),'k','o')
 hold on
-scatter(x_new,zeta_m(2:end,:),'k','*')
-hold on
 plot(x_new,yfit_nm_zeta,'k','LineStyle','-','LineWidth',1.2);
+hold on
+scatter(x_new,zeta_m(2:end,:),'k','filled')
 hold on
 plot(x_new,yfit_m_zeta,'k','LineStyle','--','LineWidth',1.2);
 hold off
@@ -493,12 +492,13 @@ ah=gca;
 set(ah,'Fontsize',12)
 scatter(x_new,omega_nm(2:end,:),'k','o')
 hold on
-scatter(x_new,omega_m(2:end,:),'k','*')
-hold on
 plot(x_new,yfit_nm_omega,'k','LineStyle','-','LineWidth',1.2);
+hold on
+scatter(x_new,omega_m(2:end,:),'k','filled')
 hold on
 plot(x_new,yfit_m_omega,'k','LineStyle','--','LineWidth',1.2);
 hold off
 xlabel('Trial runs')
 ylabel('\omega_{nm}')
 % legend({'\omega_{nm}','Learning curve','Upper bound','Lower Bound'},'Location','northeast','Orientation','vertical')
+set(h1, 'position', [size(1), size(2), 1.01*size2(3), size(4)] );
