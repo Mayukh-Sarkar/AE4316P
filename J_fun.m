@@ -425,17 +425,17 @@ h1 = subplot(3,2,[1,2]);
 size = get(h1,'position');
 ah=gca; 
 set(ah,'Fontsize',12)
-scatter(x_axis,kp_nm,'k','o')
+scatter(x_axis,kp_m,'k','o')
 hold on
-plot(x_axis,yfit_nm_kp,'k','LineStyle','-','LineWidth',1.2);
+plot(x_axis,yfit_m_kp,'k','LineStyle','-','LineWidth',1.2);
 hold on
-scatter(x_axis,kp_m,'k','filled')
+scatter(x_axis,kp_nm,'k','filled')
 hold on
-plot(x_axis,yfit_m_kp,'k','LineStyle','--','LineWidth',1.2);
+plot(x_axis,yfit_nm_kp,'k','LineStyle','--','LineWidth',1.2);
 hold off
 xlabel('Trial runs')
 ylabel('K_p')
-legend('Test data NM','Learning curve NM','Test data M','Learning curve M','Location','bestoutside')
+legend('Test data M','Learning curve M','Test data NM','Learning curve NM','Location','bestoutside')
 % ylim([-10,5])
 % legend({'K_p','Learning curve','Upper bound','Lower Bound'},'Location','northeast','Orientation','vertical')
 %plotting time lead
@@ -443,13 +443,13 @@ h2 = subplot(3,2,3);
 size2 = get(h2,'position');
 ah=gca; 
 set(ah,'Fontsize',12)
-scatter(x_axis,Tl_nm,'k','o')
+scatter(x_axis,Tl_m,'k','o')
 hold on
-plot(x_axis,yfit_nm_Tl,'k','LineStyle','-','LineWidth',1.2);
+plot(x_axis,yfit_m_Tl,'k','LineStyle','-','LineWidth',1.2);
 hold on
-scatter(x_axis,Tl_m,'k','filled')
+scatter(x_axis,Tl_nm,'k','filled')
 hold on
-plot(x_axis,yfit_m_Tl,'k','LineStyle','--','LineWidth',1.2);
+plot(x_axis,yfit_nm_Tl,'k','LineStyle','--','LineWidth',1.2);
 hold off
 xlabel('Trial runs')
 ylabel('T_L')
@@ -458,13 +458,13 @@ ylabel('T_L')
 subplot(3,2,4);
 ah=gca; 
 set(ah,'Fontsize',12)
-scatter(x_axis,Tp_nm,'k','o')
+scatter(x_axis,Tp_m,'k','o')
 hold on
-plot(x_axis,yfit_nm_Tp,'k','LineStyle','-','LineWidth',1.2);
+plot(x_axis,yfit_m_Tp,'k','LineStyle','-','LineWidth',1.2);
 hold on
-scatter(x_axis,Tp_m,'k','filled')
+scatter(x_axis,Tp_nm,'k','filled')
 hold on
-plot(x_axis,yfit_m_Tp,'k','LineStyle','--','LineWidth',1.2);
+plot(x_axis,yfit_nm_Tp,'k','LineStyle','--','LineWidth',1.2);
 hold off
 xlabel('Trial runs')
 ylabel('\tau_p')
@@ -475,13 +475,13 @@ x_new = [2:1:60];
 subplot(3,2,5)
 ah=gca; 
 set(ah,'Fontsize',12)
-scatter(x_new,zeta_nm(2:end,:),'k','o')
+scatter(x_new,zeta_m(2:end,:),'k','o')
 hold on
-plot(x_new,yfit_nm_zeta,'k','LineStyle','-','LineWidth',1.2);
+plot(x_new,yfit_m_zeta,'k','LineStyle','-','LineWidth',1.2);
 hold on
-scatter(x_new,zeta_m(2:end,:),'k','filled')
+scatter(x_new,zeta_nm(2:end,:),'k','filled')
 hold on
-plot(x_new,yfit_m_zeta,'k','LineStyle','--','LineWidth',1.2);
+plot(x_new,yfit_nm_zeta,'k','LineStyle','--','LineWidth',1.2);
 hold off
 xlabel('Trial runs')
 ylabel('\zeta_{nm}')
@@ -490,13 +490,13 @@ ylabel('\zeta_{nm}')
 subplot(3,2,6)
 ah=gca; 
 set(ah,'Fontsize',12)
-scatter(x_new,omega_nm(2:end,:),'k','o')
+scatter(x_new,omega_m(2:end,:),'k','o')
 hold on
-plot(x_new,yfit_nm_omega,'k','LineStyle','-','LineWidth',1.2);
+plot(x_new,yfit_m_omega,'k','LineStyle','-','LineWidth',1.2);
 hold on
-scatter(x_new,omega_m(2:end,:),'k','filled')
+scatter(x_new,omega_nm(2:end,:),'k','filled')
 hold on
-plot(x_new,yfit_m_omega,'k','LineStyle','--','LineWidth',1.2);
+plot(x_new,yfit_nm_omega,'k','LineStyle','--','LineWidth',1.2);
 hold off
 xlabel('Trial runs')
 ylabel('\omega_{nm}')
@@ -513,13 +513,13 @@ h1 = subplot(2,1,1);
 size = get(h1,'position');
 ah=gca; 
 set(ah,'Fontsize',12)
-scatter(x_axis,kp_nm,'k','o')
+scatter(x_axis,kp_m,'k','o')
 hold on
-plot(x_axis,yfit_nm_kp,'k','LineStyle','-','LineWidth',1.2);
+plot(x_axis,yfit_m_kp,'k','LineStyle','-','LineWidth',1.2);
 hold on
-scatter(x_axis,kp_m,'k','filled')
+scatter(x_axis,kp_nm,'k','filled')
 hold on
-plot(x_axis,yfit_m_kp,'k','LineStyle','--','LineWidth',1.2);
+plot(x_axis,yfit_nm_kp,'k','LineStyle','--','LineWidth',1.2);
 hold off
 xlabel('Trial runs')
 ylabel('K_p')
@@ -530,15 +530,15 @@ ylim([1,3])
 subplot(2,1,2);
 ah=gca; 
 set(ah,'Fontsize',12)
-scatter(x_axis,Tp_nm,'k','o')
+scatter(x_axis,Tp_m,'k','o')
 hold on
-plot(x_axis,yfit_nm_Tp,'k','LineStyle','-','LineWidth',1.2);
+plot(x_axis,yfit_m_Tp,'k','LineStyle','-','LineWidth',1.2);
 hold on
-scatter(x_axis,Tp_m,'k','filled')
+scatter(x_axis,Tp_nm,'k','filled')
 hold on
-plot(x_axis,yfit_m_Tp,'k','LineStyle','--','LineWidth',1.2);
+plot(x_axis,yfit_nm_Tp,'k','LineStyle','--','LineWidth',1.2);
 hold off
 xlabel('Trial runs')
 ylabel('\tau_p')
 ylim([0,0.75])
-legend('Test data NM','Learning curve NM','Test data M','Learning curve M','Location','best')
+legend('Test data M','Learning curve M','Test data NM','Learning curve NM','Location','best')
